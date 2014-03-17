@@ -27,7 +27,7 @@ String.prototype.startsWith = (prefix) ->
 app = express()
 module.exports = app
 
-app.set 'port', process.env.PORT || 3005
+app.set 'port', process.env.PORT || 3010
 
 app.use sessions {
  cookieName: 'three-session'

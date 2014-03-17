@@ -1,0 +1,72 @@
+extends ../layout
+
+block content
+  div.container
+    table.table
+      thead.palette.palette-asbestos
+        tr
+          th #
+          th 플랫폼
+          th 앱
+          th 이름
+          th 목록 표시
+          th 기본 언어
+          th(width='50px') 
+      tbody
+        tr
+          td= board.id
+          td= board.appPlatform
+          td= board.appName
+          td= board.name
+          td= board.viewType
+          td= board.defaultLang
+          td
+            a.btn.btn-embossed.btn-wide.btn-sm.btn-default(href='/boards/'+board.id) 수정
+    hr
+    div.row
+      div.col-xs-9
+        table.table.table-striped
+          thead
+            tr
+              th 언어
+              th 제목
+              th(width='120px') 작성일 / 최근수정일
+              th(width='120px') 게시일 / 남은시간
+              th(width='110px') 
+          tbody
+            each post in posts
+              tr(data-post-id=post.id)
+                td= post.lang
+                td= post.subject
+                td
+                  | #{moment(post.createdAt).calendar()}
+                  br
+                  if !moment(post.createdAt).isSame(moment(post.updatedAt), 'minute')
+                    | (#{moment(post.updatedAt).calendar()})
+                td
+                  | #{moment(post.publishAt).calendar()} 
+                  br 
+                  if moment(post.publishAt).isBefore()
+                    | 
+                  else
+                    strong.palette.palette-alizarin(style='padding:5px 5px; line-height:40px')
+                        | #{moment(post.publishAt).fromNow()} 게시됨
+                td
+                  div.btn-group
+                    a.btn.btn-embossed.btn-sm.btn-primary(href='/boards/'+board.id+'/posts/'+post.id) 수정
+                    button.btn.btn-embossed.btn-sm.btn-default(data-board-id=board.id, data-post-id=post.id, data-bind='click: deletePost') 삭제
+            td(colspan=4)
+              p #{posts.length}개의 게시물
+            td
+              //- button.btn.btn-danger.btn-sm(data-bind='', data-board-id=board.id) 선택된 글 삭제
+
+      div.col-xs-3
+        button.btn.btn-primary.btn-block(data-bind='click: createPost', data-board-id=board.id, data-board-default-lang=board.defaultLang) 새로운 글 추가하기
+        br
+        //- a.btn.btn-default.btn-block(href='/boards/'+board.id+'/redirect') 모바일 보기
+        button.btn.btn-default.btn-block(data-bind='click: viewBoard', data-board-id=board.id) 모바일 보기
+        br
+        p 앱을 추가하면 앱이 선택된 모든 게시판, 메시지등 다른 기능에 대한 설정과 권한을 한번에 관리할 수 있습니다.
+        p 앱 갯수 제한은 없습니다.
+        br
+        br

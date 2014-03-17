@@ -1,0 +1,235 @@
+doctype html
+html
+  head
+    meta(charset='utf8')
+    meta(name='viewport', content='initial-scale=1, maximum-scale=1, user-scalable=no')
+    meta(name='format-detection', content='telephone=no')
+    link(rel='stylesheet', href='/css/ionic.min.css')
+    link(rel='stylesheet', href='/css/notice.css')
+    title= board.name
+  body
+    content
+      ul.list
+        if enableItemPreview
+          li.item.item-icon-left.item-trigger.item-preview.hide
+            i.icon.ion-ios7-arrow-forward
+            span.item-preview-title 
+            span.item-note 
+          li.item.item-content.item-preview-content.hide
+
+          li.item.item-icon-left.item-trigger.item-active
+            i.icon.ion-ios7-arrow-forward
+            span 멋쟁이 공지사항을 위한 스타일 예제!
+            span.item-note #{moment().format('MM/DD')}
+          li.item.item-content
+            | 안녕하세요. 함께 멋진 공지사항을 올려볼까요?
+            br
+            br
+            strong 첫번째, 
+            | 모든 HTML 이용 가능합니다. 왼쪽에 두껍게 표시되어있죠?
+            | 
+            br
+            strong 두번째, 
+            | 테마 색깔이 
+            a(href='') 링크 주소에 적용됩니다.
+            br
+            br
+            strong 세번째, 
+            | 정렬을 위한 클래스가 준비되어있구요.
+            br
+            div.align-left
+              | 왼손
+            | 
+            div.align-center
+              | 가운데 손
+            | 
+            div.align-right
+              | 오른손
+            br
+            br
+            br
+            strong 네번째, 
+            | 바로 쓸 수 있는 버튼들이 있어요 ~
+            br
+            br
+            a.button.button-light .button-light
+            br 
+            br
+            a.button.button-stable .button-stable
+            br 
+            br
+            a.button.button-positive .button-positive
+            br 
+            br
+            a.button.button-calm .button-calm
+            br 
+            br
+            a.button.button-balanced .button-balanced
+            br 
+            br
+            a.button.button-energized .button-energized 
+            br 
+            br
+            a.button.button-assertive .button-assertive 
+            br 
+            br
+            a.button.button-royal .button-royal 
+            br 
+            br
+            a.button.button-dark .button-dark 
+            br 
+            br
+            a.button.button-positive.button-block .button-block
+            br
+            a.button.button-positive.button-outline .button-outline
+            br 
+            br
+            a.button.button-positive.button-clear .button-clear
+            br 
+            br
+            strong 다섯번째, 
+            | 새로운 디자인은 계속계속 추가됩니다!
+            br
+            br
+            div.button-bar
+              a.button.button-light 응모하기
+              a.button.button-light 친구에게 알리기
+            br
+            br
+            a.button.button-assertive.button-block 쿠폰 입력하기
+        li.item.item-icon-left.item-trigger
+          i.icon.ion-ios7-arrow-forward
+          | Welcome to Flipboard
+          span.item-note
+            | 02/20
+        li.item.item-content.hide
+          | ㅋㅋㅋㅋㅋㅋㅋㅋ
+
+        li.item.item-icon-left.item-trigger.item-active
+          i.icon.ion-ios7-arrow-forward
+          | 응답하라 카톡 2013!
+          span.item-note
+            | 02/20
+        li.item.item-content
+          p 이맘때가 되면 어떤 말로 감사함을 전할 수 있을까 참 오래도록 고민하게 됩니다.
+          p 생각해보면 카카오팀을 늘 그랬었죠. '올 한해도 변함없는 사랑에 감사드립니다' 같은 이런 뻔한 거 싫어하고..
+          div.align-left
+            img(src='http://lvh.me:3005/images/logotype@2x.png')
+          div.align-center
+            img(src='http://lvh.me:3005/images/logotype@2x.png')
+          div.align-right
+            img(src='http://lvh.me:3005/images/logotype@2x.png')
+          | 
+          | 뭔가 재미진 것은 없을까 부딪혀보고 그러다 지난 6년넘게 항상 멋지게 실패해 왔었습니다
+          | (카톡 이전 시대에도 늘..)
+          | 
+          | 그래서!
+          | 
+          | 
+          a(href='#') 새로운 이모티콘 받으러가기
+          | 
+          | 
+          button.button.button-positive.button-block 받으러 가기
+        //- li.item.item-icon-left.item-trigger
+        //-   i.icon.ion-ios7-arrow-forward
+        //-   | 응답하라 카톡 2013!
+        //-   span.item-note
+        //-     | 02/20
+        li.item.item-trigger
+          div.item-button
+            i.icon.ion-ios7-arrow-forward
+          span.title
+            | 새로운 업데이트 안내 v3.0.2
+          span.item-note
+            | 02/20
+        li.item.item-content.hide
+          | 이맘때가 되면 어떤 말로 감사함을 전할 수 있을까 참 오래도록 고민하게 됩니다.
+          | 
+          | 생각해보면 카카오팀을 늘 그랬었죠. '올 한해도 변함없는 사랑에 감사드립니다' 같은 이런 뻔한 거 싫어하고..
+          | 
+          | 뭔가 재미진 것은 없을까 부딪혀보고 그러다 지난 6년넘게 항상 멋지게 실패해 왔었습니다
+          | (카톡 이전 시대에도 늘..)
+          | 
+          | 그래서!
+          | 
+          | 
+          a(href='#') 새로운 이모티콘 받으러가기
+          | 
+          | 
+          button.button.button-positive.button-block 받으러 가기
+
+        //- li.item.item-icon-left.item-trigger
+        //-   i.icon.ion-ios7-arrow-forward
+        //-   | 프로필 보내기 기능 등 버전 3.9.5 업데이트 안내 (1/2)
+        //-   span.item-note
+        //-     | 12/14
+        //- li.item.item-content.hide
+        //-   | ㅋㅋㅋㅋㅋㅋㅋㅋ
+        
+        //- li.item.item-icon-left.item-word-break.item-trigger
+        //-   i.icon.ion-ios7-arrow-forward
+        //-   | 프로필 보내기 기능 등 버전 3.9.5 업데이트 안내 (1/2)
+        //-   span.item-note
+        //-     | 12/14
+        //- li.item.item-content.hide
+        //-   | ㅋㅋㅋㅋㅋㅋㅋㅋ
+
+        li.item.item-trigger
+          div.item-button
+            i.icon.ion-ios7-arrow-forward
+          span.title 응답하라 카톡 2013!
+          span.item-note
+            | 02/20
+        li.item.item-content.hide
+          | ㅋㅋㅋㅋㅋㅋㅋㅋ
+
+        div#more
+          button.button.button-full.button-clear.button-dark 더 보기
+
+        
+    //- if board.viewType == 'card'
+    //-   p= board.viewType
+    //- else 
+    //-   p= board.viewType
+    //- //- list
+    //-   div.list.card
+    //-     a.item.item-icon-left(href='#')
+    //-       i.icon.ion-home
+    //-       | Enter home address
+    //-     a.item.item-icon-left(href='#')
+    //-       i.icon.ion-ios7-telephone
+    //-       | Enter phone number
+    //-     a.item.item-icon-left(href='#')
+    //-       i.icon.ion-wifi
+    //-       | Enter wireless password
+    //-     a.item.item-icon-left(href='#')
+    //-       i.icon.ion-card
+    //-       | Enter card information
+      //- .list.card
+      //-   .item.item-avatar
+      //-     img(src='mcfly.jpg')
+      //-     h2 Marty McFly
+      //-     p November 05, 1955
+      //-   .item.item-body
+      //-     img.full-image(src='delorean.jpg')
+      //-     p
+      //-       | This is a "Facebook" styled Card. The header is created from a Thumbnail List item,
+      //-       | the content is from a card-body consisting of an image and paragraph text. The footer
+      //-       | consists of tabs, icons aligned left, within the card-footer.
+      //-     p
+      //-       a.subdued(href='#') 1 Like
+      //-       a.subdued(href='#') 5 Comments
+      //-   .item.tabs.tabs-secondary.tabs-icon-left
+      //-     a.tab-item(href='#')
+      //-       i.icon.ion-thumbsup
+      //-       | Like
+      //-     a.tab-item(href='#')
+      //-       i.icon.ion-chatbox
+      //-       | Comment
+      //-     a.tab-item(href='#')
+      //-       i.icon.ion-share
+      //-       | Share
+    script(src="/js/jquery-2.0.3.min.js")
+    script(src='/js/jquery.hammer.min.js')
+    script(src="/js/moment-with-langs.min.js")
+    script(src="/js/notice.js")

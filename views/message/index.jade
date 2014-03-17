@@ -1,0 +1,26 @@
+extends ../layout
+
+block content
+  div.container
+    div.row
+      div.col-xs-6
+        hr
+        h6 쓰리썸플레이스 - <strong>메시지에 대해 알아보기</strong>
+        br
+        p 앱을 만들다보면 끊임없이 컨텐츠가 업데이트 되고, 때로는 외부에서 제어해야할 코드 부분이 생기게 됩니다. 
+        p 대부분 앱 실행과 동시에 서버에서 서비스안내, 점검공지, 업데이트 정보를 JSON 또는 XML형태로 가져와 사용자에게 잘 보여줍니다. 기능 구현은 매우 간단하지요!
+        p 하지만, 이후 메시지를 바꾸기 위해 운영팀 또는 누군가의 요청으로 매번 개발자가 손을 봐야하는 불편함이 있습니다.
+        hr 
+        p 쓰리썸플레이스에서는 매우 간단한 메시지 기능을 제공합니다!
+        ol
+          li 웹에서 누구나 쉽게 메시지 관리를 할 수 있습니다.
+          li 서버 걱정없이 JSON 메시지를 배포하세요.
+          li 몇명의 사용자에게 메시지가 도달했는지 지켜보세요.
+          li 이미 쓰이고 있는 JSON 메시지를 템플릿을 제공합니다.
+          li 여러 개의 앱에 있는 메시지를 한번에 관리 할 수 있습니다.
+          li 다양한 언어로 메시지를 제공하세요.
+        hr
+        a.btn.btn-hg.btn-block.btn-primary(href='/resources') 다음
+      div.col-xs-6
+        img(src='/images/message-alert.png', style='width:49%;')
+        img(src='/images/message-confirm.png', style='width:49%; ')

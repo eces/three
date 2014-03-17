@@ -1,0 +1,33 @@
+extends ../layout
+
+block content
+  div.container
+    div.row
+      div.col-xs-6
+        hr
+        h6 쓰리썸플레이스 - <strong>게시판에 대해 알아보기</strong>
+        br
+        p 앱은 고유의 기능과 디자인이 중요한 것은 물론, 지속적인 관리 또한 매우 중요합니다. 
+        p 사용자들은 새로운 소식을 기다리고 완성도 높은 발전을 기대합니다. 따라서 공지사항, 자주 묻는 질문, 이용안내, 도움말을 만드는 것은 살아있는 느낌을 주기 충분하지만 시간이 많이 듭니다.
+        p 컨텐츠를 꾸준히 업데이트 할 수 있는 도구가 없을까요?
+        hr 
+        p 쓰리썸플레이스에서는 매우 간단한 게시판 서비스를 제공합니다!
+        ol
+          li 웹에서 누구나 쉽게 게시판을 관리를 할 수 있습니다.
+          li 제목과 본문이 필요한 곳이면 어디든 쓸 수 있습니다.
+          li 서버 걱정없이 게시판을 만드세요.
+          li 완성도 높은 디자인 템플릿이 준비되어 있습니다. 또는 자유롭게 HTML, JS, CSS를 이용하세요.
+          li 게시글이 배포될 시간을 예약할 수 있습니다.
+          li 몇명의 사용자에게 게시글이 도달했는지 지켜보세요.
+          li 여러 개의 앱에 있는 게시판을 한번에 관리 할 수 있습니다.
+          li 다양한 언어로 컨텐츠를 제공하세요. (영문 공지사항, 중국어 공지사항)
+        hr
+        a.btn.btn-hg.btn-block.btn-primary(href='/messages') 다음
+      div.col-xs-6
+        hr
+        h6 미리보기
+        br
+        div(style="text-align:center;")
+          iframe.preview.iphone5(src='/v1/users/1/apps/1/boards/1')
+        //- img(src='/images/message-alert.png', style='width:49%;')
+        //- img(src='/images/message-confirm.png', style='width:49%; ')

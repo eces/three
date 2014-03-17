@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  div.container
+    div.row
+      div.col-xs-8
+        hr
+        h6 서비스 소개서
+        br
+        script.speakerdeck-embed(async='async', data-id='0c6a87b08f5a01317de21e8cfc450540', data-ratio='1.33333333333333', src='//speakerdeck.com/assets/embed.js')
+      div.col-xs-4
+        hr
+        h6 새로운 소식
+        br
+        p
+          | 베타서비스 시작 
+          small (03/17)
+        p
+          | API v1 이용 가능 
+          small (03/15)
+        p
+          | 게시판 서비스 시작 
+          small (03/14)
+        hr
+        button.btn.btn-hg.btn-block.btn-primary(data-bind='click: signBeta')
+          | 베타서비스 시작하기 
+        a.btn.btn-hg.btn-block.btn-default(href='/apps')
+          | 더 알아보기
+
+    br
+    //- else
+

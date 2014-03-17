@@ -1,0 +1,101 @@
+extends ../layout
+
+block content
+  div.container
+    div.palette.palette-alizarin
+      p 계정 활동 로그(결제, 로그인, 문의메일)
+      p 기본 정보 보이기 (수정은 링크) 
+    div.row
+      div.col-xs-6
+        hr
+        h6 사용량
+        br
+        h1
+          | #{user.rateRemainsCurrency} 
+          span(style='opacity:0.3; font-size: 15pt;') / #{user.rateLimitCurrency}
+        p 이번달 남은 콜 / 월별제공량
+        br
+        br
+
+        hr
+        h6
+          | 활동 기록
+          //- a(href='#').btn.btn-default.pull-right 모두 읽음
+        br
+        each activity in activities
+          p
+            =activity.message
+            time.pull-right #{moment(activity.createdAt).fromNow()}
+
+        //- p
+        //-   | 로그인됨 (16.121.51.161, Mac, Safari)
+        //-   time.pull-right 17분 전
+        //- p
+        //-   | 회원가입을 축하합니다.
+        //-   time.pull-right 3일 전
+
+
+      div.col-xs-6
+        hr
+        h6 가입 정보
+        br
+        dl.dl-horizontal
+          dt 이메일
+          dd= user.email
+          dt 이름
+          dd
+            | #{user.name}&nbsp;
+          dt 연락처
+          dd
+            | #{user.phone}&nbsp;
+          dt 회사 이름
+          dd
+            | #{user.companyName}&nbsp;
+          dt 회사 연락처
+          dd
+            | #{user.companyPhone}&nbsp;
+          dt 가입된 플랜
+          dd
+            if user.rateLimit == 1000000
+              | 스타트업 (무료)
+            else
+              | 프리미엄 (유료)
+
+        hr
+        h6 초대 링크를 통한 가입자 
+        br
+        //- input.well.col-xs-12(type='text', value=promoUrl)
+        h1= user.promoted
+        a(href=promoUrl) 나의 프로모션 코드
+        //- h6
+        //-   | 가입 정보
+        //-   a(href='#').btn.btn-primary.pull-right 비밀번호 변경 / 정보 수정
+        //- hr
+        //- form.form-horizontal(role='form', data-bind='submit: signup')
+        //-   .form-group
+        //-     label.col-sm-3.control-label 이메일
+        //-     .col-sm-9
+        //-       =user.email
+        //-   .form-group
+        //-     label.col-sm-3.control-label 이름
+        //-     .col-sm-9
+        //-       =user.name
+        //-   .form-group
+        //-     label.col-sm-3.control-label 연락처
+        //-     .col-sm-9
+        //-       =user.phone
+        //-   .form-group
+        //-     label.col-sm-3.control-label 회사 이름
+        //-     .col-sm-9
+        //-       =user.companyName
+        //-   .form-group
+        //-     label.col-sm-3.control-label 회사 연락처
+        //-     .col-sm-9
+        //-       =user.companyPhone
+        //-   .form-group
+        //-     label.col-sm-3.control-label 가입된 플랜
+        //-     .col-sm-9
+        //-       if user.rateLimit == 1000000
+        //-         | 스타트업 (무료)
+        //-       else
+        //-         | 프리미엄 (유료)

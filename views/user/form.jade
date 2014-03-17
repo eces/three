@@ -1,0 +1,58 @@
+extends ../layout
+
+block content
+  div.container
+    div.row
+      div.col-xs-6
+        hr
+        h6 계정 로그인
+        br
+        form.form-horizontal(role='form', data-bind='submit: signin')
+          .form-group
+            label.col-sm-2.control-label(for='input10') 이메일
+            .col-sm-10
+              input#input10.form-control(type='email', placeholder='이메일 주소', autofocus)
+          .form-group
+            label.col-sm-2.control-label(for='input11') 비밀번호
+            .col-sm-10
+              input#input11.form-control(type='password', placeholder='4자리 이상의 비밀번호')
+          .form-group
+            .col-sm-offset-2.col-sm-10
+              button.btn.btn-default.btn-secondary(type='submit') 로그인
+
+      div.col-xs-6
+        hr
+        h6 새로운 계정 만들기
+        br
+        if locals.promoCode
+          div.palette.palette-wet-asphalt
+            | 무료 플랜으로 자동 가입됩니다. 기본 월 1,000,000건의 API call
+          hr
+          form.form-horizontal(role='form', data-bind='submit: signup')
+            .form-group
+              label.col-sm-2.control-label(for='input20') 이메일
+              .col-sm-10
+                input#input20.form-control(type='email', placeholder='로그인 할 이메일 주소, 메일 인증을 거쳐야합니다.')
+            .form-group
+              label.col-sm-2.control-label(for='input21') 비밀번호
+              .col-sm-10
+                input#input21.form-control(type='password', placeholder='4자리 이상의 비밀번호')
+            .form-group
+              label.col-sm-2.control-label(for='input22') 확인
+              .col-sm-10
+                input#input22.form-control(type='password', placeholder='비밀번호 다시 입력')
+            .form-group
+              label.col-sm-2.control-label(for='input23') 이름
+              .col-sm-10
+                input#input23.form-control(type='text', placeholder='사용자 이름')
+            .form-group
+              label.col-sm-2.control-label() 
+              .col-sm-10
+                a(href='#') 이용약관 및 개인정보보호약관 보기
+            .form-group
+              .col-sm-offset-2.col-sm-10
+                input#input24.form-control(type='hidden', value=promoCode)
+                button.btn.btn-default.btn-primary(type='submit') 위의 약관을 동의하며 회원으로 가입합니다.
+        else
+          button.btn.btn-hg.btn-block.btn-primary(data-bind='click: signBeta')
+            | 베타 서비스에 가입하려면 이메일을 남겨주세요.

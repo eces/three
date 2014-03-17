@@ -1,0 +1,40 @@
+extends ../layout
+
+block content
+  div.container
+    div.row
+      div.col-xs-6
+        h6= app.name
+        hr
+        form.form-horizontal(role='form', data-bind='submit: updateApp', data-app-id=app.id)
+          .form-group
+            label.col-sm-2.control-label(for='input20') 이름
+            .col-sm-10
+              input#input20.form-control(type='text', placeholder='앱 이름', value=app.name)
+          .form-group
+            label.col-sm-2.control-label(for='input23') 플랫폼
+            .col-sm-10
+              select.select-block#input23
+                option(value='') 기타
+                each platform in ['iOS', 'Android']
+                  if platform == app.platform
+                    option(value=platform, selected)= platform
+                  else
+                    option(value=platform)= platform
+          .form-group
+            label.col-sm-2.control-label(for='input21') 식별자
+            .col-sm-10
+              input#input21.form-control(type='text', placeholder='com.threesome.appname', value=app.identifier)
+          .form-group
+            label.col-sm-2.control-label(for='input22') 아이콘
+            .col-sm-10
+              p 
+          .form-group
+            .col-sm-offset-2.col-sm-10
+              button.btn.btn-embossed.mrm.btn-wide.btn-default.btn-primary(type='submit') 전송
+              a.btn.btn-embossed.mrm.btn-wide.btn-default(href='/apps') 목록으로 돌아가기
+
+      div.col-xs-6
+        //- button.btn.btn-primary.btn-block(data-bind='click: createApp') 새로운 앱 추가하기
+        br
+        p 도움말이 없습니다.

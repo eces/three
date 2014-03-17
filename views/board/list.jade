@@ -1,0 +1,35 @@
+extends ../layout
+
+block content
+  div.container
+    div.row
+      div.col-xs-9
+        table.table
+          thead
+              tr
+                th #
+                th 플랫폼
+                th 앱
+                th 이름
+                th 변경일자
+                th 
+            tbody
+              each board in boards
+                tr
+                  td= board.id
+                  td= board.appPlatform
+                  td= board.appName
+                  td= board.name
+                  td #{moment(board.updatedAt).calendar()}
+                  td(width='140px')
+                    div.btn-group
+                      a.btn.btn-embossed.btn-sm.btn-default(href='/boards/'+board.id) 수정
+                      a.btn.btn-embossed.btn-sm.btn-primary(href='/boards/'+board.id+'/posts') 게시물 관리
+              td(colspan=6)
+                p #{boards.length}개의 게시판
+
+      div.col-xs-3
+        button.btn.btn-primary.btn-block(data-bind='click: createBoard') 새로운 게시판 추가하기
+        br
+        p 앱을 추가하면 앱이 선택된 모든 게시판, 메시지등 다른 기능에 대한 설정과 권한을 한번에 관리할 수 있습니다.
+        p 앱 갯수 제한은 없습니다.

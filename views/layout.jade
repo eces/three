@@ -1,0 +1,109 @@
+mixin menu(uri, label)
+  if uri.startsWith(locals.uri)
+    li.active
+      a(href=uri)
+        =label
+  else
+    li
+      a(href=uri)
+        =label
+
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    title 쓰리썸플레이스 - 지금 당장 필요한 모바일 웹 기술
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(href="/bootstrap/css/bootstrap.css", rel="stylesheet")
+    link(href="/css/flat-ui.css", rel="stylesheet")
+    link(href="/css/application.css", rel="stylesheet")
+    link(href="/css/bootstrap-datetimepicker.min.css", rel="stylesheet")
+    link(href="http://code.ionicframework.com/ionicons/1.4.1/css/ionicons.min.css", rel="stylesheet")
+
+    link(rel="shortcut icon", href="/images/favicon.ico")
+    | <!--[if lt IE 9]>
+    script(src="/js/html5shiv.js")
+    script(src="/js/respond.min.js")
+    | <![endif]-->
+  body
+    nav.navbar.navbar-default(role="navigation")
+      div.navbar-header
+        button.navbar-toggle(type="button", data-toggle="collapse", data-target="#navbar-collapse-01")
+          span.sr-only Toggle navigation
+        a.navbar-brand(href="/")
+          img(src='/images/logotype@2x.png',style='width: 62px; height: 22px;')
+      div.collapse.navbar-collapse#navbar-collapse-01
+        ul.nav.navbar-nav
+          +menu('/apps', '앱 서비스')
+          +menu('/boards', '게시판')
+          +menu('/messages', '메시지')
+          +menu('/resources', '리소스')
+          +menu('/feedbacks', '피드백')
+          +menu('/reports', '사용자 리포트')
+        ul.nav.navbar-nav.navbar-right
+          if locals.signed
+            //- +menu('/pricing', '업그레이드')
+            +menu('/users/'+locals.three.id, '계정 정보 (' + locals.three.email + ')')
+            +menu('/session/destroy', '로그아웃')
+          else
+            //- +menu('/pr', '서비스 소개서')
+            +menu('/session', '로그인')
+      if locals.error
+        div.palette.palette-turquoise
+          =locals.error
+    block content
+
+    footer
+      .container
+          .row
+            .col-xs-7
+              h3.footer-title THREESOMEPLACE
+              p
+                | 사업자정보
+                br
+                | 연락처
+                br
+                | 약관
+              p.pvl
+                | 소셜 플러그인
+              //- a.footer-brand(href='http://designmodo.com', target='_blank')
+              //-   img(src='images/footer/logo.png', alt='Designmodo.com')
+            //- .col-xs-5
+            //-   .footer-banner
+            //-     h3.footer-title Get Flat UI Pro
+            //-     ul
+            //-       li Tons of Basic and Custom UI Elements
+            //-       li A Lot of Useful Samples
+            //-       li More Vector Icons and Glyphs
+            //-       li Pro Color Swatches
+            //-       li Bootstrap Based HTML/CSS/JS Layout
+            //-     | Go to:
+            //-     a(href='http://designmodo.com/flat', target='_blank') designmodo.com/flat
+
+
+    script(src="/js/jquery-2.0.3.min.js")
+    script(src="/js/jquery-ui-1.10.3.custom.min.js")
+    script(src="/js/jquery.ui.touch-punch.min.js")
+    script(src="/js/bootstrap.min.js")
+    script(src="/js/bootstrap-select.js")
+    script(src="/js/bootstrap-switch.js")
+    script(src="/js/flatui-checkbox.js")
+    script(src="/js/flatui-radio.js")
+    script(src="/js/jquery.tagsinput.js")
+    script(src="/js/jquery.placeholder.js")
+    script(src="/js/knockout-3.1.0.js")
+    script(src="/js/moment-with-langs.min.js")
+    script(src="/js/bootstrap-datetimepicker.min.js")
+    script(src="/js/application.js")
+    script(type='text/javascript')
+      | (function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===e.location.protocol?"https:":"http:")+'//cdn.mxpnl.com/libs/mixpanel-2.2.min.js';f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f);b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==
+      | typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");for(g=0;g<i.length;g++)f(c,i[g]);
+      | b._i.push([a,e,d])};b.__SV=1.2}})(document,window.mixpanel||[]);
+      | mixpanel.init("b334f89515cf0b8656fb0a3b7024e9b1");
+    script(type='text/javascript')
+      | (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      | (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      | m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      | })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      | ga('create', 'UA-44586326-1', 'threesomeplace.com');
+      | ga('send', 'pageview');

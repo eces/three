@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  ul.list
+    if enableItemPreview
+      include enable-item-preview
+    
+    each post in posts
+      li.item.item-icon-left.item-trigger
+        i.icon.ion-ios7-arrow-forward
+        != post.subject
+        span.item-note= moment(post.publishAt).format('MM/DD')
+      li.item.item-content.hide!= post.body

@@ -1,0 +1,67 @@
+extends ../layout
+
+block content
+  div.container
+    div.palette.palette-alizarin
+      p 테마 누르면 오른쪽에 스크린샷
+      p json 제공 
+    div.row
+      div.col-xs-6
+        hr
+        h6 게시판 정보 수정
+        br
+        form.form-horizontal(role='form', data-bind='submit: updateBoard', data-board-id=board.id)
+          .form-group
+            label.col-sm-2.control-label(for='input20') 연결된 앱
+            .col-sm-10
+              select.select-block#input20
+                option(value=0) 없음
+                each app in apps
+                  if board.appId == app.id
+                    option(value=app.id, selected) #{app.name} (#{app.identifier})
+                  else
+                    option(value=app.id) #{app.name} (#{app.identifier})
+          .form-group
+            label.col-sm-2.control-label(for='input21') 이름
+            .col-sm-10
+              input#input21.form-control(type='text', placeholder='게시판 이름', value=board.name)
+          .form-group
+            label.col-sm-2.control-label(for='input22') 목록 표시
+            .col-sm-10
+              each view in views
+                if view.id == board.viewType
+                  div.radio
+                    label
+                      input(type='radio' name='input22' value=view.id, checked)
+                      =view.description
+                  option
+                else
+                  div.radio
+                    label
+                      input(type='radio' name='input22' value=view.id)
+                      =view.description
+          .form-group
+            label.col-sm-2.control-label(for='input24') 기본 언어
+            .col-sm-10
+              select.select-block#input24
+                each language in languages
+                  if language == board.defaultLang
+                    option(value=language, selected)= language
+                  else
+                    option(value=language)= language
+              span.help-block 게시판 주소에 <code>lang=Korean</code> parameter를 넣으면 해당 언어의 글만 보입니다. 값이 없을 경우 기본언어로 적용됩니다.
+          
+          .form-group
+            .col-sm-offset-2.col-sm-10
+              button.btn.btn-embossed.mrm.btn-wide.btn-default.btn-primary(type='submit') 전송
+              a.btn.btn-embossed.mrm.btn-wide.btn-default(href='/boards') 목록으로 돌아가기
+
+      div.col-xs-6
+        hr
+        h6 게시판 페이지 주소
+        br
+        input.well.col-xs-12(type='text', value=url)
+        hr
+        h6 게시판 API 주소
+        br
+        input.well.col-xs-12(type='text', value=url+'.json')

@@ -1,0 +1,28 @@
+extends ../layout
+
+block content
+  div.container
+    div.row
+      div.col-xs-6
+        hr
+        h6 쓰리썸플레이스 - <strong>리소스에 대해 알아보기</strong>
+        br
+        p 아직도 새로운 이벤트와 변경사항을 알리기 위해 길을 가로막고 항상 메시지를 띄우고 계신가요? 
+        p 매달 또는 매주 있는 행사를 위해 매번 앱을 업데이트하고, 원하는 시기에 컨텐츠를 보이기란 쉽지 않습니다. 그래서 자체 서버에서 제공하는 외부 리소스를 이용하게 좋은 방법 중 하나입니다.
+        p 이러다보니 디자이너에게 플랫폼 별 이미지 크기를 요청하고, 파일 이름의 naming convention을 맞추고, 서버나 CDN에 직접 업로드(ftp, scp, rsync) 해야합니다. 그리고, 수초간 사용자는 해당 리소스를 받아볼 수 없습니다.
+        p 혹시 여러분은 서비스 운영중에 이미지를 rollback하거나 예약된 시간에 parellel deployment를 할 수 있습니까?
+        hr 
+        p 쓰리썸플레이스에서는 매우 간단한 리소스 기능을 제공합니다!
+        ol
+          li 웹에서 누구나 쉽게 리소스 관리를 할 수 있습니다.
+          li 새로운 이미지/동영상 컨텐츠를 서비스 중단없이 추가 할 수 있습니다.
+          li 리소스에 문제가 있으면 바로 되돌리세요. 
+          li 몇명의 사용자에게 컨텐츠가 도달했는지 지켜보세요.
+          li 정확히 예약된 시간에 리소스를 배포하세요.
+          li 여러 개의 앱에 있는 리소스를 한번에 관리 할 수 있습니다.
+          li 다양한 언어로 리소스를 제공하세요.
+        hr
+        a.btn.btn-hg.btn-block.btn-primary(href='/feedbacks') 다음
+      div.col-xs-6
+        //- img(src='/images/message-alert.png', style='width:49%;')
+        //- img(src='/images/message-confirm.png', style='width:49%; ')

@@ -1,0 +1,26 @@
+extends ../layout
+
+block content
+  div.container
+    div.row
+      div.col-xs-6
+        hr
+        h6 쓰리썸플레이스 - 사용자 리포트에 대해 알아보기
+        br
+        p 사용자 컨텐츠 앱이 심사에 통과하려면 여러분의 앱은 'Flag as Spam', 'Report abuse' 기능을 만들어 두어야합니다.
+        p 매번 사람이 신고를 확인하고, 직접 항목을 삭제하는등 조치가 필요합니다. 언제까지 신고 처리를 위해 직접 데이터베이스에 쿼리를 보낼 것인가요. 여러명의 작업자가 생기면서 관리자 UI가 더욱더 필요합니다.
+        p 신고 API를 통해 자동으로 정보를 수집하고, 이쁘게 보여주고, 처리 상태에 따라 서버로 callback까지 보내준다면 어떨까요?
+        hr 
+        p 쓰리썸플레이스에서는 매우 간단한 리포트 기능을 제공합니다!
+        ol
+          li 웹에서 누구나 쉽게 리포트 관리를 할 수 있습니다.
+          li 네이티브 앱, 하이브리드 앱, 웹 페이지 어디서든 신고를 받으세요.
+          li 리포트에 따른 상태변경(안읽음, 처리중, 완료)을 지원합니다.
+          li 리포트의 상태를 서버와 연동하세요. 서버에 반영 할 수 있도록 callback을 보내드립니다.
+          li 여러 개의 앱에 있는 리포트를 한번에 관리 할 수 있습니다.
+        hr
+        button.btn.btn-hg.btn-block.btn-primary(data-bind='click: signBeta')
+          | 베타서비스 시작하기 
+      div.col-xs-6
+        img(src='/images/message-alert.png', style='width:49%;')
+        img(src='/images/message-confirm.png', style='width:49%; ')

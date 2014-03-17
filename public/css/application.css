@@ -1,0 +1,33 @@
+h1 {
+  font-weight: 100;
+}
+body > div.container {
+  min-height: 600px;
+}
+footer p {
+  font-size: 8pt;
+}
+.preview {
+  border: #4a4a4a 10px solid;
+  border-radius: 10px;
+}
+.preview.iphone5 {
+  width: 320px;
+  height: 568px;
+}
+.stand div {
+  text-align: center;
+  -webkit-transition: all 300ms ease-in-out;
+  -webkit-transform: translate3d(0, 0, 0);
+  color: #89a;
+}
+.stand div:hover {
+  -webkit-transform: translate3d(0, -5px, 0);
+  color: #369;
+}
+.stand div i {
+  font-size: 32px;
+}
+.stand div i small {
+  font-size: 12px;
+}

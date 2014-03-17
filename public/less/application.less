@@ -1,0 +1,42 @@
+h1 {
+  font-weight: 100;
+}
+body > div.container {
+  min-height: 600px;
+}
+
+footer {
+  p {
+    font-size: 8pt;
+  }
+}
+
+.preview {
+  border: #4a4a4a 10px solid;
+  border-radius: 10px;
+  // border: #d4d4d4 10px solid;
+  &.iphone5 {
+    width: 640px/2;
+    height: 1136px/2;
+  }
+}
+
+.stand {
+  div {
+    text-align: center;
+
+    -webkit-transition: all 300ms ease-in-out;
+    -webkit-transform: translate3d(0, 0, 0);
+    color: #89a;
+    &:hover {
+      -webkit-transform: translate3d(0, -5px, 0);
+      color: #369;
+    }
+    i {
+      font-size: 32px;
+      small {
+        font-size: 12px;
+      }
+    }
+  }
+}

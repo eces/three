@@ -63,7 +63,13 @@ app.use (req, res, next) ->
   res.locals.moment.lang 'ko'
   next()
 
-app.use express.logger('dev')
+if 'development' is app.get('env')
+  app.use express.errorHandler()
+  app.use express.logger('dev')
+  console.log 'DEV'
+else
+  console.log 'PROD'
+  app.use express.logger('tiny')
 app.use express.bodyParser()
 app.use express.methodOverride()
 app.use express.cookieParser(secret)
@@ -103,9 +109,6 @@ decrementRate = (req, res, next) ->
           throw e0 
           return
     return
-    
-if 'development' is app.get('env')
-  app.use express.errorHandler()
 
 app.get '/', (req, res, next) ->
   # if req.three.id isnt undefined

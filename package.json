@@ -11,6 +11,7 @@
     "mysql": "2.0.0-alpha9",
     "client-sessions": "*",
     "intl": "*",
-    "moment": "*"
+    "moment": "*",
+    "platform": "*"
   }
 }

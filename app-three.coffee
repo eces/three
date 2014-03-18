@@ -28,6 +28,7 @@ app = express()
 module.exports = app
 
 app.set 'port', process.env.PORT || 3010
+app.enable 'trust proxy'
 
 app.use sessions {
  cookieName: 'three-session'

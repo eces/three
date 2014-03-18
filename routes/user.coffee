@@ -149,6 +149,7 @@ exports.signup = (req, res) ->
             req.three.name = user.name
             req.three.email = user.email
             activity.create req.three.id, '회원가입을 축하합니다.'
+            activity.create req.three.id, '로그인됨' + activity.getUserString(req)
             res.send 
               code: 200
               message: '환영합니다! 가입이 완료되었습니다.'

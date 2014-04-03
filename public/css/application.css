@@ -1,3 +1,10 @@
+html,
+body {
+  font-family: 'Helvetica Neue', Helvetica, 'Apple SD Gothic Neo', 'Nanum Gothic', 'Malgun Gothic', Arial, sans-serif;
+}
+.container {
+  min-width: 970px !important;
+}
 h1 {
   font-weight: 100;
 }
@@ -14,6 +21,7 @@ footer p {
 .preview.iphone5 {
   width: 320px;
   height: 568px;
+  overflow: auto;
 }
 .stand div {
   text-align: center;
@@ -30,4 +38,7 @@ footer p {
 }
 .stand div i small {
   font-size: 12px;
+}
+img.typekit-badge {
+  display: none !important;
 }

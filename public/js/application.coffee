@@ -11,6 +11,8 @@ jQuery ->
   #   style: 'btn btn-inverse'
   #   menuStyle: 'dropdown'
 
+  __languages__ = 'ko en zh-CN zh-TW ja'.split(' ')
+
   moment.lang 'ko'
   $('div.datetimepicker').datetimepicker {
     format: 'yyyy-MM-dd hh:mm:ss'
@@ -227,15 +229,15 @@ jQuery ->
         alert '다시 시도해주세요.'
   view.previewPost = (data, event) ->
     $f = $ 'iframe.preview'
-    $list = $f.contents().find 'content ul.list'
-    $item = $list.find 'li.item-preview'
-    $content = $list.find 'li.item-preview-content'
+    $list = $f.contents().find 'content .list'
+    $item = $list.find '.item-preview'
+    $content = $list.find '.item-preview-content'
     subject = $('#input20').val().trim()
     body = $('#input21').val()
     $item.show()
     # .addClass('item-active')
-    $item.find('span.item-preview-title').html(subject)
-    $item.find('span.item-note').html moment().format('MM/DD')
+    $item.find('.item-preview-title').html(subject)
+    $item.find('.item-preview-subtitle').html moment().format('MM/DD')
     $content.html(body)
     # .show()
     
@@ -244,6 +246,85 @@ jQuery ->
     bid = $this.data 'board-id'
     # redirect to real page
     location.href = '/boards/' + bid + '/preview'
+  view.createMessage = (data, event) ->
+    n = prompt '메시지 이름을 적어주세요. (1글자 이상)'
+    n = n.trim()
+    if n.length is 0
+      return
+    $.ajax
+      url: '/messages'
+      method: 'post'
+      data:
+        name: n
+      success: (d, s, x) ->
+        if d.code is 200
+          location.href = '/messages/' + d.id
+        else
+          alert d.message + ' ' + d.code
+      error: (x, s, d) ->
+        alert '다시 시도해주세요.'
+  # 
+  view.updateMessage = (f) ->
+    $f = $ f
+    mid = $f.data 'message-id'
+    appId = $f.find('#input20').val().trim()
+    name = $f.find('#input21').val().trim()
+    identifier = $f.find('#input22').val().trim()
+    lang = $f.find('#input24').val().trim()
+
+    if appId is '0'
+      alert '연결된 앱이 없습니다. 앱을 선택해주세요.'
+      $f.find('#input20').focus()
+      return
+
+    if identifier.length is 0
+      alert '식별자는 1글자 이상이어야 합니다.'
+      $f.find('#input22').focus()
+      return
+    if not /^[a-z0-9\-\_]+$/i.test(identifier)
+      alert '식별자 형식이 잘못되었습니다. URI 규칙을 따릅니다.'
+      $f.find('#input22').focus()
+      return
+
+    data =
+      appId: appId
+      name: name
+      identifier: identifier
+      lang: lang
+
+    for l in __languages__
+      data[l] = $('#'+l).val()
+
+    $.ajax
+      url: '/messages/' + mid
+      method: 'put'
+      data: data
+      success: (d, s, x) ->
+        if d.code is 200
+          $f.find('button[type=submit]').html moment(d.timestamp).format('LT') + ' 완료'
+          location.reload()
+        else
+          alert d.message + ' ' + d.code
+      error: (x, s, d) ->
+        alert '다시 시도해주세요.'
+  # 
+  view.deleteMessage = (data, event) ->
+    $this = $ event.target
+    mid = $this.data 'message-id'
+    $.ajax
+      url: '/messages/' + mid
+      method: 'delete'
+      success: (d, s, x) ->
+        if d.code is 200
+          $item = $("tr[data-message-id=#{mid}]")
+          $item.css
+            opacity: 0.3
+          $item.find('a,button').remove()
+        else
+          alert d.message + ' ' + d.code
+      error: (x, s, d) ->
+        alert '다시 시도해주세요.'
+
   view.signBeta = (data, event) ->
     $this = $ event.target
     e = prompt '감사합니다 !\n\n이메일 주소를 남겨주시면 순차적으로 가입링크를 보내드리겠습니다.'

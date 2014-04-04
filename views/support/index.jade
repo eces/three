@@ -1,0 +1,34 @@
+extends ../layout
+
+block content
+  div.container
+    div.row
+      div.col-xs-6
+        hr
+        h6 새로운 소식
+        br
+        iframe(src='http://threesomeplace.com/v1/users/9/apps/5/boards/6', style='border: 0; width: 100%; height: 400px;')
+      div.col-xs-6
+        hr
+        h6 자주 묻는 질문
+        br
+        iframe(src='http://threesomeplace.com/v1/users/9/apps/5/boards/7', style='border: 0; width: 100%; height: 400px;')
+    div.row
+      hr
+      div.col-xs-6
+        h6 1:1 문의
+        p
+          strong 이용문의 / 가격문의 / 새로운 기능 제안 / 버그 리포트 / 제휴 
+          | 모두를 환영합니다!
+        br
+        a.btn.btn-wide.btn-primary(href='mailto:contact@olivebill.com?subject=쓰리썸플레이스%20-%20') 이메일 보내기
+      div.col-xs-6
+        h6 Need support to other language in your country?
+        p We're going to support other languages and currencies as prioritized order. Let us know, it will prioritize your languages higher.
+        a.btn.btn-wide.btn-default(href='mailto:contact@olivebill.com?subject=THREESOMEPLACE%20-%20') Contact us
+    div.row
+      div.col-xs-12
+
+    br
+    //- else
+

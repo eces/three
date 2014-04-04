@@ -35,13 +35,13 @@ block content
           .form-group
             label.col-sm-2.control-label(for='input22') 언어
             .col-sm-10
+              span.help-block 요청한 언어의 게시물이 없을 경우 기본 언어의 게시물을 보여줍니다.
               select.select-block#input22
                 each language in languages
                   if language == post.lang
                     option(value=language, selected)= language
                   else
                     option(value=language)= language
-              span.help-block 게시판 주소에 <code>lang=Korean</code> parameter를 넣으면 해당 언어의 글만 보입니다.
           
           hr
           h6 확인

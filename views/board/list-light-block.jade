@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  ul.list
+    if enableItemPreview
+      li.item.item-trigger.item-preview.hide
+        div.item-button
+          i.icon.ion-ios7-arrow-forward
+        span.title.item-preview-title 
+        span.item-note.item-preview-subtitle
+      li.item.item-content.item-preview-content.hide
+
+      li.item.item-trigger.item-active
+        div.item-button
+          i.icon.ion-ios7-arrow-forward
+        span.title 멋쟁이 공지사항을 위한 스타일 예제!
+        span.item-note #{moment().format('MM/DD')}
+      li.item.item-content
+        include example-list
+    
+    each post in posts
+      li.item.item-trigger
+        div.item-button
+          i.icon.ion-ios7-arrow-forward
+        span.title
+          != post.subject
+        span.item-note= moment(post.publishAt).format('MM/DD')
+      li.item.item-content.hide!= post.body

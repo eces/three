@@ -3,7 +3,18 @@ extends layout
 block content
   ul.list
     if enableItemPreview
-      include enable-item-preview
+      li.item.item-icon-left.item-trigger.item-preview.hide
+        i.icon.ion-ios7-arrow-forward
+        span.item-preview-title 
+        span.item-preview-subtitle.item-note 
+      li.item.item-content.item-preview-content.hide
+
+      li.item.item-icon-left.item-trigger.item-active
+        i.icon.ion-ios7-arrow-forward
+        span 멋쟁이 공지사항을 위한 스타일 예제!
+        span.item-note #{moment().format('MM/DD')}
+      li.item.item-content
+        include example-list
     
     each post in posts
       li.item.item-icon-left.item-trigger

@@ -1,0 +1,67 @@
+extends ../layout
+
+block content
+  div.container
+    //- div.palette.palette-alizarin
+      //- p 
+    div.row
+      div.col-xs-6
+        hr
+        h6 메시지 수정
+        br
+        form.form-horizontal(role='form', data-bind='submit: updateMessage', data-message-id=message.id)
+          .form-group
+            label.col-sm-2.control-label(for='input20') 연결된 앱
+            .col-sm-10
+              select.select-block#input20
+                option(value=0) 없음
+                each app in apps
+                  if message.appId == app.id
+                    option(value=app.id, selected) #{app.name} (#{app.identifier})
+                  else
+                    option(value=app.id) #{app.name} (#{app.identifier})
+          .form-group
+            label.col-sm-2.control-label(for='input21') 이름
+            .col-sm-10
+              input#input21.form-control(type='text', placeholder='메시지 이름', value=message.name)
+          .form-group
+            label.col-sm-2.control-label(for='input22') 식별자
+            .col-sm-10
+              input#input22.form-control(type='text', placeholder='식별자 (알파벳과 하이픈, 언더바)', value=message.identifier)
+          
+          .form-group
+            label.col-sm-2.control-label(for='input24') 기본 언어
+            .col-sm-10
+              span.help-block 요청한 언어로 저장된 메시지가 없을 경우 기본 언어의 메시지를 보여줍니다.
+              select.select-block#input24
+                each language in languages
+                  if language == message.defaultLang
+                    option(value=language, selected)= language
+                  else
+                    option(value=language)= language
+
+          .form-group
+            label.col-sm-2.control-label(for='input25') 메시지 주소
+            .col-sm-10
+              input#input25.well.col-xs-12(type='text', value=url)
+              p
+                strong 메시지의 데이터 타입을 쉽게 확인하기 위해 알맞은 확장자를 붙힐 수 있습니다.
+                br
+                | ex) json, txt, jpg, jpeg, png, gif, mov, url, plain, binary, image, csv, tsv
+                hr
+                strong 메시지 내용이 http로 시작하는 URL인 경우 바로 redirect됩니다.
+                br
+                | 이 방법을 통해 이미지, 동영상, 미디어 파일의 고유 링크를 제공할 수 있습니다.
+          
+          .form-group
+            .col-sm-offset-2.col-sm-10
+              button.btn.btn-embossed.mrm.btn-wide.btn-default.btn-primary(type='submit') 전송
+              a.btn.btn-embossed.mrm.btn-wide.btn-default(href='/messages') 목록으로 돌아가기
+
+      div.col-xs-6
+        each language in languages
+          hr
+          h6= language
+          textarea.form-control(id=language)= message[language]
+        br 
+        

@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  link(rel='stylesheet', href='/css/notice-dark.css')
+  div.list.card
+    if enableItemPreview
+      div.item.item-avatar.item-trigger.item-preview.hide
+        h2.item-preview-title 
+        p.item-preview-subtitle
+      div.item.item-body.item-content.item-preview-content.hide
+
+      div.item.item-avatar.item-trigger
+        h2 멋쟁이 공지사항을 위한 스타일 예제!
+        p #{moment().format('MM/DD')}
+      div.item.item-body.item-content.hide
+        include example-card
+        
+    each post in posts
+      //- div.item.item-divider.item-trigger
+      div.item.item-avatar.item-trigger
+        h2!= post.subject 
+        p= moment(post.publishAt).format('LL')
+      div.item.item-body.item-content.hide!= post.body

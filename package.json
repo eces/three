@@ -12,6 +12,7 @@
     "client-sessions": "*",
     "intl": "*",
     "moment": "*",
-    "platform": "*"
+    "platform": "*",
+    "newrelic": "*"
   }
 }

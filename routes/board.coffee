@@ -3,7 +3,23 @@ pool = require('../db.js').pool
 __views__ = [
   {
     id: 'list-light'
+    description: 'iOS7 스타일 공지사항/리스트형 게시판 테마'
+  }
+  {
+    id: 'list-light-block'
     description: '밝은 디자인 앱에 어울리는 공지사항/리스트형 게시판 테마'
+  }
+  {
+    id: 'list-light-card'
+    description: '밝은 디자인 앱에 어울리는 FAQ/카드형 게시판 테마'
+  }
+  {
+    id: 'list-calm-card'
+    description: '은은한 회색 배경을 가진 FAQ/카드형 게시판 테마'
+  }
+  {
+    id: 'list-dark-card'
+    description: '어두운 디자인 앱에 어울리는 FAQ/카드형 게시판 테마'
   }
   # {
   #   id: 'list-stable'
@@ -19,7 +35,7 @@ __views__ = [
   # }
 ]
 
-__languages__ = ["Arabic", "Moroccan Arabic", "Bosnian", "Bulgarian", "Breton", "Catalan", "Welsh", "Czech", "Chuvash", "Danish", "German", "Greek", "English", "English (Australia)", "English (Canada)", "English (England)", "Esperanto", "Spanish", "Estonian", "Basque", "Persian", "Finnish", "Farose", "French (Canada)", "French", "Galician", "Hebrew", "Hindi", "Croatian", "Hungarian", "Armenian", "Bahasa Indonesia", "Icelandic", "Italian", "Japanese", "Georgian", "Korean", "Latvian", "Lithuanian", "Malayalam", "Marathi", "Bahasa Malaysian", "Norwegian", "Nepalese", "Dutch", "Norwegian Nynorsk", "Polish", "Portuguese (Brazil)", "Portuguese", "Romanian", "Russian", "Slovak", "Slovenian", "Albanian", "Swedish", "Thai", "Tagalog (Filipino)", "Turkish", "Tamaziɣt", "Ukrainian", "Uzbek", "Chinese", "Chinese (Traditional)"]
+__languages__ = 'ko en zh-CN zh-TW ja'.split(' ')
 
 exports.index = (req, res, next) ->
   res.render 'board/index.jade'
@@ -53,7 +69,7 @@ exports.create = (req, res, next) ->
     name: req.param 'name'
     viewType: 'list'
     appId: 0
-    defaultLang: 'Korean'
+    defaultLang: 'ko'
     userId: +req.three.id
   if board.name.trim().length is 0
     res.send 200,
@@ -230,6 +246,14 @@ exports.view = (req, res, next) ->
   bid = req.param 'boardId'
   lang = req.param 'lang'
 
+  renderToJson = false
+
+  if bid.endsWith('.json')
+    renderToJson = true
+    bid = bid.substr(0, bid.length-5)
+  if not isFinite(bid)
+    res.send 404, '게시판 아이디가 올바르지 않습니다.'
+
   # options
   enableItemPreview = if req.param('enableItemPreview') is 'true' then true else false
 
@@ -266,14 +290,24 @@ exports.view = (req, res, next) ->
           theme = ''
           switch r0[0].viewType
             when 'list-light' then theme = 'list-light'
+            when 'list-light-block' then theme = 'list-light-block'
+            when 'list-light-card' then theme = 'list-light-card'
+            when 'list-calm-card' then theme = 'list-calm-card'
+            when 'list-dark-card' then theme = 'list-dark-card'
             else
               theme = 'list-light'
           # example for multiple themes
           # theme = 'view'
-          res.render 'board/' + theme + '.jade',
-            board: r0[0]
-            posts: r1
-            enableItemPreview: enableItemPreview
+          if renderToJson
+            res.send {
+              board: r0[0]
+              posts: r1
+            }
+          else
+            res.render 'board/' + theme + '.jade',
+              board: r0[0]
+              posts: r1
+              enableItemPreview: enableItemPreview
       else
         db.release()
         res.send 200, '게시판을 찾을 수 없습니다.'

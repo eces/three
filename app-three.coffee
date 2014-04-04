@@ -1,4 +1,5 @@
 express = require 'express'
+newrelic = require 'newrelic'
 routes = {}
 
 routes.user = require './routes/user'
@@ -171,6 +172,9 @@ app.get '/boards', (req, res, next) ->
   else
     routes.board.index req, res, next
 
+app.get '/1', (req, res) ->
+  res.render 'board/view.jade'
+
 app.post '/boards', requireSession, (req, res, next) ->
   routes.board.create req, res, next
 
@@ -212,6 +216,20 @@ app.get '/messages', (req, res, next) ->
   else
     routes.message.index req, res, next
 
+app.post '/messages', requireSession, (req, res, next) ->
+  routes.message.create req, res, next
+
+app.get '/messages/:messageId', requireSession, (req, res, next) ->
+  res.locals.uri = '/messages'
+  routes.message.find req, res, next
+
+app.put '/messages/:messageId', requireSession, (req, res, next) ->
+  routes.message.update req, res, next
+
+app.delete '/messages/:messageId', requireSession, (req, res, next) ->
+  routes.message.delete req, res, next
+
+
 app.get '/resources', (req, res, next) ->
   res.locals.uri = '/resources'
   if req.three.id
@@ -233,6 +251,9 @@ app.get '/reports', (req, res, next) ->
   else
     routes.report.index req, res, next
 
+app.get '/support', (req, res, next) ->
+  res.locals.uri = '/support'
+  res.render 'support/index.jade'
 
 # app.get '/messages', requireSession, (req, res, next) ->
 #   res.locals.uri = '/messages'
@@ -243,7 +264,10 @@ app.get '/v1/users/:userId/debug', decrementRate, (req, res, next) ->
   res.send 200
 app.get '/v1/users/:userId/apps/:appId/boards/:boardId', decrementRate, (req, res, next) ->
   routes.board.view req, res, next
-app.get '/v1/users/:userId/apps/:appId/boards/:boardId', decrementRate, (req, res, next) ->
+app.get '/v1/users/:userId/apps/:appId/messages/:messageIdentifier.:extension', decrementRate, (req, res, next) ->
+  routes.message.view req, res, next
+app.get '/v1/users/:userId/apps/:appId/messages/:messageIdentifier', decrementRate, (req, res, next) ->
+  routes.message.view req, res, next
 
 server = http.createServer(app)
 server.listen app.get('port'), () ->

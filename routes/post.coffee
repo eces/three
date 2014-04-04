@@ -1,7 +1,7 @@
 pool = require('../db.js').pool
 activity = require('../activity.js')
 
-__languages__ = ["Arabic", "Moroccan Arabic", "Bosnian", "Bulgarian", "Breton", "Catalan", "Welsh", "Czech", "Chuvash", "Danish", "German", "Greek", "English", "English (Australia)", "English (Canada)", "English (England)", "Esperanto", "Spanish", "Estonian", "Basque", "Persian", "Finnish", "Farose", "French (Canada)", "French", "Galician", "Hebrew", "Hindi", "Croatian", "Hungarian", "Armenian", "Bahasa Indonesia", "Icelandic", "Italian", "Japanese", "Georgian", "Korean", "Latvian", "Lithuanian", "Malayalam", "Marathi", "Bahasa Malaysian", "Norwegian", "Nepalese", "Dutch", "Norwegian Nynorsk", "Polish", "Portuguese (Brazil)", "Portuguese", "Romanian", "Russian", "Slovak", "Slovenian", "Albanian", "Swedish", "Thai", "Tagalog (Filipino)", "Turkish", "Tamaziɣt", "Ukrainian", "Uzbek", "Chinese", "Chinese (Traditional)"]
+__languages__ = 'ko en zh-CN zh-TW ja'.split(' ')
 
 exports.list = (req, res, next) ->
   user = 

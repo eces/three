@@ -10,19 +10,15 @@ block content
         script.speakerdeck-embed(async='async', data-id='0c6a87b08f5a01317de21e8cfc450540', data-ratio='1.33333333333333', src='//speakerdeck.com/assets/embed.js')
       div.col-xs-4
         hr
-        h6 새로운 소식
+        h6
+          | 새로운 소식
+          //- small.pull-right
+          //-   a(href='/support') 더보기
         br
-        p
-          | 베타서비스 시작 
-          small (03/17)
-        p
-          | API v1 이용 가능 
-          small (03/15)
-        p
-          | 게시판 서비스 시작 
-          small (03/14)
+        iframe(src='http://threesomeplace.com/v1/users/9/apps/5/boards/6', style='border: 0; width: 100%; height: 400px;')
         hr
-        button.btn.btn-hg.btn-block.btn-primary(data-bind='click: signBeta')
+        //- button.btn.btn-hg.btn-block.btn-primary(data-bind='click: signBeta')
+        a.btn.btn-hg.btn-block.btn-primary(href='/session')
           | 베타서비스 시작하기 
         a.btn.btn-hg.btn-block.btn-default(href='/apps')
           | 더 알아보기

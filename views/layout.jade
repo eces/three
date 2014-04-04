@@ -38,10 +38,17 @@ html(lang="en")
           +menu('/apps', '앱 서비스')
           +menu('/boards', '게시판')
           +menu('/messages', '메시지')
-          +menu('/resources', '리소스')
-          +menu('/feedbacks', '피드백')
-          +menu('/reports', '사용자 리포트')
+          li(style='opacity:0.5')
+            a 리소스
+          li(style='opacity:0.5')
+            a 피드백
+          li(style='opacity:0.5')
+            a 사용자 리포트
+          //- +menu('/resources', '리소스')
+          //- +menu('/feedbacks', '피드백')
+          //- +menu('/reports', '사용자 리포트')
         ul.nav.navbar-nav.navbar-right
+          +menu('/support', '고객센터')
           if locals.signed
             //- +menu('/pricing', '업그레이드')
             +menu('/users/'+locals.three.id, '계정 정보 (' + locals.three.email + ')')
@@ -69,7 +76,11 @@ html(lang="en")
                 | 소셜 플러그인
               //- a.footer-brand(href='http://designmodo.com', target='_blank')
               //-   img(src='images/footer/logo.png', alt='Designmodo.com')
-            //- .col-xs-5
+            .col-xs-5
+              h3.footer-title 
+              h6 Need support to other language in your country?
+              p We're going to support other languages and currencies as prioritized order. Let us know, it will prioritize your languages higher.
+              a.btn.btn-block.btn-primary(href='mailto:contact@olivebill.com?subject=THREESOMEPLACE%20-%20') Contact us
             //-   .footer-banner
             //-     h3.footer-title Get Flat UI Pro
             //-     ul

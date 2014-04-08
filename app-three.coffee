@@ -268,6 +268,7 @@ app.get '/docs', (req, res) ->
   # res.redirect 302, 'https://ghost.org/about'
 
 app.get '/docs/:category/:title', (req, res) ->
+  console.log '>>>>>>>>>'
   title = req.param 'title'
   category = req.param 'category'
   if not /^[a-z]+$/i.test(category) or not /^[a-z0-9\-\_]+$/i.test(title)
@@ -278,6 +279,7 @@ app.get '/docs/:category/:title', (req, res) ->
   res.render 'document/' + category + '/' + title + '.jade', (err, html) ->
     if err
       res.render 'document/404.jade'
+      throw err if res.locals.dev
     else
       res.send html
 

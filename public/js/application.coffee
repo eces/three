@@ -389,15 +389,17 @@ jQuery ->
     # get current by a.active
     $menu = $ 'div.document-menu'
     $cur = $menu.find('a.active')
+    if $cur.parent().is('h6')
+      $cur = $cur.parent()
+    $prev = $cur.prev()
+    $next = $cur.next()
 
     $elemLinks = $navigations.find 'a'
     $elemLabels = $navigations.find 'span'
 
     # fill prev and next
-    $prev = $cur.prev()
-    $next = $cur.next()
 
-    if $prev.length is 0
+    if $prev.is('.end')
       $elemLinks.filter(':even').html ''
     else 
       if not $prev.is('a')
@@ -409,6 +411,7 @@ jQuery ->
       # aware of white spaces
       $elemLabels.filter(':even').html ' ' + $prev.text()
 
+    console.log $next
     if $next.is('.end')
       $elemLinks.filter(':odd').html ''
     else

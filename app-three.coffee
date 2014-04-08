@@ -1,5 +1,4 @@
 express = require 'express'
-newrelic = require 'newrelic'
 routes = {}
 
 routes.user = require './routes/user'
@@ -39,8 +38,8 @@ app.use sessions {
  activeDuration: 1000 * 60 * 5
  cookie: {
    ephemeral: false
-   # httpOnly: true
-   httpOnly: false
+   httpOnly: true
+   # httpOnly: false
    secure: false
  }
 }
@@ -63,11 +62,16 @@ app.use (req, res, next) ->
 
   res.locals.moment = require 'moment'
   res.locals.moment.lang 'ko'
+  res.locals.dev = if 'development' is app.get('env') then true else false
   next()
 
-app.use express.logger('dev')
 if 'development' is app.get('env')
+  app.use express.logger('dev')
   app.use express.errorHandler()
+else
+  # production
+  newrelic = require 'newrelic'
+  app.use express.logger('tiny')
 app.use express.bodyParser()
 app.use express.methodOverride()
 app.use express.cookieParser(secret)
@@ -229,7 +233,6 @@ app.put '/messages/:messageId', requireSession, (req, res, next) ->
 app.delete '/messages/:messageId', requireSession, (req, res, next) ->
   routes.message.delete req, res, next
 
-
 app.get '/resources', (req, res, next) ->
   res.locals.uri = '/resources'
   if req.three.id
@@ -259,6 +262,26 @@ app.get '/support', (req, res, next) ->
 #   res.locals.uri = '/messages'
 #   routes.message.list req, res, next
 
+app.get '/docs', (req, res) ->
+  res.locals.uri = '/docs'
+  res.render 'document/index.jade'
+  # res.redirect 302, 'https://ghost.org/about'
+
+app.get '/docs/:category/:title', (req, res) ->
+  title = req.param 'title'
+  category = req.param 'category'
+  if not /^[a-z]+$/i.test(category) or not /^[a-z0-9\-\_]+$/i.test(title)
+    res.render 'document/404.jade'
+    return
+
+  res.locals.uri = '/docs/' + category + '/' + title
+  res.render 'document/' + category + '/' + title + '.jade', (err, html) ->
+    if err
+      res.render 'document/404.jade'
+    else
+      res.send html
+
+
 # API v1
 app.get '/v1/users/:userId/debug', decrementRate, (req, res, next) ->
   res.send 200
@@ -268,6 +291,10 @@ app.get '/v1/users/:userId/apps/:appId/messages/:messageIdentifier.:extension', 
   routes.message.view req, res, next
 app.get '/v1/users/:userId/apps/:appId/messages/:messageIdentifier', decrementRate, (req, res, next) ->
   routes.message.view req, res, next
+app.get '/v1/users/:userId/apps/:appId/files/:filename.:extension', decrementRate, (req, res, next) ->
+  routes.message.sendfile req, res, next
+app.get '/v1/users/:userId/apps/:appId/files/:filename', decrementRate, (req, res, next) ->
+  routes.message.sendfile req, res, next
 
 server = http.createServer(app)
 server.listen app.get('port'), () ->

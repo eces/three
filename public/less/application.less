@@ -1,3 +1,7 @@
+@import "variables";
+// Utility mixins for greater good
+@import "mixins";
+
 html, body {
   // min-width: 970px !important;
   font-family: 'Helvetica Neue', Helvetica, 'Apple SD Gothic Neo', 'Nanum Gothic', 'Malgun Gothic', Arial, sans-serif;
@@ -53,4 +57,57 @@ footer {
 
 img.typekit-badge {
   display: none !important;
+}
+
+.textarea-summernote {
+  height: 500px;
+}
+
+div.note-editor {
+  button.btn {
+    color: #34495e;
+    background-color: #fff;
+    border: solid #e4e4e4 1px;
+  }
+  .btn-group > .btn {
+    border: solid #e4e4e4 1px;
+    border-right: 0;
+    // &:last-child {
+    //   border-right: 1px;
+    // }
+  }
+  span.caret {
+    // color: #34495e !important;
+    border-top-color: lighten(#34495e, 20%);
+    border-width: 5px 5px;
+  }
+}
+
+#document {
+  background-color: #fff;
+  .box-shadow(0 0 10px 0px rgba(0,0,0,0.05));
+  .document-content {
+  }
+  .document-menu {
+    .box-shadow(inset -2px 0 10px 0px rgba(0,0,0,0.05));
+    // background-color: @wet-asphalt;
+    a {
+      display: block;
+      &.active {
+        color: @orange;
+      }
+    }
+    h6 a {
+      color: @wet-asphalt;
+      &:hover {
+        color: @carrot;
+      }
+    }
+  }
+
+  // .breadcrumb {
+  //   li.active {
+  //     padding: 0 300px;
+  //   }
+  // }
 }

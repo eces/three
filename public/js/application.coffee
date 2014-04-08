@@ -181,7 +181,8 @@ jQuery ->
     bid = $f.data 'board-id'
     pid = $f.data 'post-id'
     subject = $f.find('#input20').val().trim()
-    body = $f.find('#input21').val()
+    # body = $f.find('#input21').val()
+    body = $f.find('#input21').code()
     lang = $f.find('#input22').val().trim()
     publishAt = $f.find('#input23').val()
 
@@ -233,7 +234,8 @@ jQuery ->
     $item = $list.find '.item-preview'
     $content = $list.find '.item-preview-content'
     subject = $('#input20').val().trim()
-    body = $('#input21').val()
+    # body = $('#input21').val()
+    body = $('#input21').code()
     $item.show()
     # .addClass('item-active')
     $item.find('.item-preview-title').html(subject)
@@ -241,11 +243,11 @@ jQuery ->
     $content.html(body)
     # .show()
     
-  view.viewBoard = (data, event) ->
-    $this = $ event.target
-    bid = $this.data 'board-id'
-    # redirect to real page
-    location.href = '/boards/' + bid + '/preview'
+  # view.viewBoard = (data, event) ->
+  #   $this = $ event.target
+  #   bid = $this.data 'board-id'
+  #   # redirect to real page
+  #   location.href = '/boards/' + bid + '/preview'
   view.createMessage = (data, event) ->
     n = prompt '메시지 이름을 적어주세요. (1글자 이상)'
     n = n.trim()
@@ -286,19 +288,32 @@ jQuery ->
       $f.find('#input22').focus()
       return
 
-    data =
-      appId: appId
-      name: name
-      identifier: identifier
-      lang: lang
+    # data =
+    #   appId: appId
+    #   name: name
+    #   identifier: identifier
+    #   lang: lang
+    data = new FormData
+    data.append 'appId', appId
+    data.append 'name', name
+    data.append 'identifier', identifier
+    data.append 'lang', lang
 
     for l in __languages__
-      data[l] = $('#'+l).val()
-
+      # data[l] = $('#'+l).val()
+      $lang = $('#'+l)
+      data.append l, $('#'+l).val()
+      if $lang.is(':disabled')
+        $file = $lang.prev().prev()
+        data.append l, $file[0].files[0]
+    # return
     $.ajax
       url: '/messages/' + mid
       method: 'put'
       data: data
+      cache: false
+      contentType: false
+      processData: false
       success: (d, s, x) ->
         if d.code is 200
           $f.find('button[type=submit]').html moment(d.timestamp).format('LT') + ' 완료'
@@ -349,6 +364,72 @@ jQuery ->
         alert '다시 시도해주세요.'
   ko.applyBindings view
   # mixpanel.track 'Test'
+
+  $summernotes = $('[data-toggle~=summernote]')
+  if $summernotes.length
+    $summernotes.summernote
+      height: 200
+      focus: true
+      lang: 'ko-KR'
+      # toolbar: [
+      #   # ['style', ['style']]
+      #   ['style', ['bold', 'italic', 'underline', 'clear']]
+      #   ['fontsize', ['fontsize']]
+      #   ['color', ['color']]
+      #   ['para', ['ul', 'ol', 'paragraph']]
+      #   ['height', ['height']]
+      #   # ['insert', ['picture', 'link']]
+      #   ['insert', ['picture', 'link']]
+      #   ['table', ['table']]
+      #   ['help', ['help']]
+      # ]
+
+  $navigations = $ '[data-toggle~=navigation]'
+  if $navigations.length
+    # get current by a.active
+    $menu = $ 'div.document-menu'
+    $cur = $menu.find('a.active')
+
+    $elemLinks = $navigations.find 'a'
+    $elemLabels = $navigations.find 'span'
+
+    # fill prev and next
+    $prev = $cur.prev()
+    $next = $cur.next()
+
+    if $prev.length is 0
+      $elemLinks.filter(':even').html ''
+    else 
+      if not $prev.is('a')
+        if $prev.is('h6')
+          $prev = $prev.find 'a'
+        else if $prev.is('hr')
+          $prev = $prev.prev()
+      $elemLinks.filter(':even').attr 'href', $prev.attr 'href'
+      # aware of white spaces
+      $elemLabels.filter(':even').html ' ' + $prev.text()
+
+    if $next.is('.end')
+      $elemLinks.filter(':odd').html ''
+    else
+      if not $next.is('a')
+        if $next.is('h6')
+          $next = $next.find 'a'
+        else if $next.is('hr')
+          $next = $next.next().find 'a'
+      $elemLinks.filter(':odd').attr 'href', $next.attr 'href'
+      # aware of white spaces
+      $elemLabels.filter(':odd').html $next.text() + ' '
+
+    console.log $prev, $next
+
+  $submissions = $ '[data-toggle~=submission]'
+  if $submissions.length
+    $submissions.bind 'change', (e) ->
+      $textarea = $(this).next().next()
+      $textarea.html ''
+      $textarea.attr 'placeholder', '파일이 선택되었습니다 - 전송을 누르면 파일을 업로드하여 이 곳에 URL을 채웁니다.'
+      $textarea.attr 'disabled', 'disabled'
   true
 
 # (function($) {

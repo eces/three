@@ -2,9 +2,10 @@ extends ../layout
 
 block content
   div.container
-    div.palette.palette-alizarin
-      p 계정 활동 로그(결제, 로그인, 문의메일)
-      p 기본 정보 보이기 (수정은 링크) 
+    if locals.dev
+      div.palette.palette-alizarin
+        p 계정 활동 로그(결제, 로그인, 문의메일)
+        p 기본 정보 보이기 (수정은 링크) 
     div.row
       div.col-xs-6
         hr
@@ -24,7 +25,9 @@ block content
         br
         each activity in activities
           p
-            =activity.message
+            | #{activity.message} 
+            span(style='color: #95a5a6;')
+              | (#{activity.ip}, #{activity.os}, #{activity.name})
             time.pull-right #{moment(activity.createdAt).fromNow()}
 
         //- p
@@ -38,6 +41,8 @@ block content
       div.col-xs-6
         hr
         h6 가입 정보
+          a.btn.btn-wide.mrl.btn-danger.pull-right(href='/session/destroy') 로그아웃
+          //- a.btn.mrl.btn-default.pull-right(href='#') 정보 수정
         br
         dl.dl-horizontal
           dt 이메일

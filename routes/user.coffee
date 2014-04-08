@@ -148,8 +148,8 @@ exports.signup = (req, res) ->
             req.three.id = r1.insertId
             req.three.name = user.name
             req.three.email = user.email
-            activity.create req.three.id, '회원가입을 축하합니다.'
-            activity.create req.three.id, '로그인됨' + activity.getUserString(req)
+            activity.create req, req.three.id, '회원가입을 축하합니다.'
+            activity.create req, req.three.id, '로그인됨'
             res.send 
               code: 200
               message: '환영합니다! 가입이 완료되었습니다.'
@@ -202,7 +202,7 @@ exports.signin = (req, res) ->
           req.three.name = r0[0].name
           req.three.email = r0[0].email
 
-          activity.create req.three.id, '로그인됨' + activity.getUserString(req)
+          activity.create req, req.three.id, '로그인됨'
           res.send 
             code: 200
             id: req.three.id
@@ -210,6 +210,7 @@ exports.signin = (req, res) ->
         else
           # req.three.wrongPassword = 0 if req.three.wrongPassword is undefined
           # req.three.wrongPassword++
+          activity.create req, r0[0].id, "로그인 시도, 비밀번호 틀림"
           res.send 
             code: 400
             message: '비밀번호가 틀립니다.'

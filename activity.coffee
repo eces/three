@@ -1,20 +1,25 @@
 pool = require('./db.js').pool
 platform = require 'platform'
 
-exports.getUserString = (req) ->
-  client = platform.parse req.headers['user-agent']
-  return " (#{req.ip}, #{client.os}, #{client.name})"
-
-exports.create = (uid, message) ->
+exports.create = (req, uid, message) ->
   pool.getConnection (cErr, db) ->
     if cErr
       db.release()
       throw cErr
       return
+    activity = {}
+    activity.message = message
+    activity.userId = uid
+
+    client = platform.parse req.headers['user-agent']
+    activity.ip = req.ip
+    activity.os = client.os
+    activity.name = client.name
+
     db.query """
     INSERT INTO `activities`
-    SET `message` = ?, `userId` = ?, `createdAt` = NOW()
-    """, [message, +uid], (e, r) ->
+    SET ?, `createdAt` = NOW()
+    """, [activity], (e, r) ->
       db.release()
       if e
         throw e

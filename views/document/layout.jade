@@ -1,0 +1,16 @@
+extends ../layout
+
+block content
+  style
+    | body { background-color: #f0f0f0; }
+  div.container#document
+    div.row
+      div.col-xs-2.document-menu
+        include menu
+        hr.end
+        a.btn.btn-block.btn-default(href='mailto:contact@olivebill.com?subject=THREESOMEPLACE%20-%20') 1:1 이메일 문의
+        br
+        br
+        
+      div.col-xs-10.document-content
+        block inner-content

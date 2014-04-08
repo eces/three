@@ -180,6 +180,7 @@ exports.update = (req, res, next) ->
         res.send 403
 
 exports.delete = (req, res, next) ->
+  uid = +req.three.id
   bid = +req.param 'boardId'
   pid = +req.param 'postId'
   if not isFinite(bid)
@@ -227,7 +228,7 @@ exports.delete = (req, res, next) ->
             throw e0
             return
           if r0.affectedRows
-            activity.create req.three.id, "게시판 ##{bid}, 글 삭제" + activity.getUserString(req)
+            activity.create req, uid, "게시판 ##{bid}, 글 삭제"
             res.send 200,
               code: 200,
               timestamp: Date.now()

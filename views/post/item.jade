@@ -23,15 +23,15 @@ block content
           .form-group
             label.col-sm-2.control-label(for='input21') 본문
             .col-sm-10
-              textarea#input21.form-control(rows=8, placeholder='5000자 이내 (너무 길면 사람들이 읽지 않아요!)')= post.body
+              textarea#input21.form-control.textarea-summernote(rows=8, placeholder='5000자 이내 (너무 길면 사람들이 읽지 않아요!)', data-toggle='summernote')= post.body
           hr
           h6 배포 설정
           br
           .form-group
             label.col-sm-2.control-label(for='input23') 게시 예약일
             .col-sm-10
+              span.help-block 예약일이 이미 지났으면 글이 바로 보이게됩니다. 24시간 후로 기본 지정되어있습니다.
               input#input23.form-control(type='datetime', placeholder='0000-00-00 00:00:00', value=moment(post.publishAt).format('YYYY-MM-DD hh:mm:ss'))
-              span.help-block 예약일이 이미 지났으면 글이 바로 보이게됩니다.
           .form-group
             label.col-sm-2.control-label(for='input22') 언어
             .col-sm-10
@@ -42,19 +42,24 @@ block content
                     option(value=language, selected)= language
                   else
                     option(value=language)= language
-          
           hr
-          h6 확인
+          h6 도움말
+          a(href='/docs/board/scheduled-posting') 게시글 예약하여 올리기
           br
-          dl.dl-horizontal
-            dt 오탈자와 맞춤법 확인
-            dd 누구나 실수하고, 누구나 고칠 수 있어요! 꼼꼼하게 확인해주세요.
-            dt 인사말과 맺음말
-            dd 다양한 연령대 사용자가 보게됩니다.
-            dt 키워드 언급
-            dd 더욱더 기억에 남는 공지를 위해 여러분의 앱이나 팀의 이름을 언급해주세요.
-            dt 1달에 최소 한번
-            dd 꾸준한 소식 전달은 앱이 발전하고 있다고 알리는 제일 쉬운 방법입니다.
+          a(href='/docs/board/localization') 다국어 지원하기
+          br
+          //- hr
+          //- h6 확인
+          //- br
+          //- dl.dl-horizontal
+          //-   dt 오탈자와 맞춤법 확인
+          //-   dd 누구나 실수하고, 누구나 고칠 수 있어요! 꼼꼼하게 확인해주세요.
+          //-   dt 인사말과 맺음말
+          //-   dd 다양한 연령대 사용자가 보게됩니다.
+          //-   dt 키워드 언급
+          //-   dd 더욱더 기억에 남는 공지를 위해 여러분의 앱이나 팀의 이름을 언급해주세요.
+          //-   dt 1달에 최소 한번
+          //-   dd 꾸준한 소식 전달은 앱이 발전하고 있다고 알리는 제일 쉬운 방법입니다.
           hr
           .form-group
             .col-sm-offset-2.col-sm-10

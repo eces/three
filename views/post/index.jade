@@ -1,4 +1,5 @@
 extends ../layout
+include ../platform-mixin
 
 block content
   div.container
@@ -15,7 +16,8 @@ block content
       tbody
         tr
           td= board.id
-          td= board.appPlatform
+          td
+            +platform(board.appPlatform)
           td= board.appName
           td= board.name
           td= board.viewType
@@ -65,9 +67,14 @@ block content
         button.btn.btn-primary.btn-block(data-bind='click: createPost', data-board-id=board.id, data-board-default-lang=board.defaultLang) 새로운 글 추가하기
         br
         //- a.btn.btn-default.btn-block(href='/boards/'+board.id+'/redirect') 모바일 보기
-        button.btn.btn-default.btn-block(data-bind='click: viewBoard', data-board-id=board.id) 모바일 보기
+        a.btn.btn-default.btn-block(href='/boards/' + board.id + '/preview')
+          i.ion-play
+          | 
+          | 모바일 보기
         br
-        p 앱을 추가하면 앱이 선택된 모든 게시판, 메시지등 다른 기능에 대한 설정과 권한을 한번에 관리할 수 있습니다.
-        p 앱 갯수 제한은 없습니다.
+        hr
+        h6 도움말
+        a(href='/docs/board/posting') 게시글 쓰기
+
         br
         br

@@ -2,12 +2,29 @@ extends ../layout
 
 block content
   div.container(style="text-align:center;")
-    div.palette.palette-alizarin
-      p 아이폰에는 헤더 넣기
-      p 아이폰 플랫 껍데기 가져오기
-      p 아이패드 테마 지원
-      p 안드로이드 넥서스 플랫 껍데기 가져오기
-      p 안드로이드에는 탭바 넣기
-    a(href=url) http://threesomeplace.com#{url}
-    br 
-    iframe.preview.iphone5(src=url)
+    if locals.dev
+      div.palette.palette-alizarin
+        p 아이폰에는 헤더 넣기 > 이상한데?
+        p 아이폰 플랫 껍데기 가져오기
+        p 아이패드 테마 지원
+        p 안드로이드 넥서스 플랫 껍데기 가져오기
+        p 안드로이드에는 탭바 넣기
+    hr
+    a.pull-left(href=postUrl)
+      i.ion-ios7-arrow-back
+      | 
+      | 게시글 목록으로 돌아가기
+    a.pull-right(href=itemUrl) 테마 변경
+    h6
+      a(href=url)= url
+    br
+
+    div.row
+      div.col-xs-12
+        iframe.preview(style='width:100%; height:900px', src='http://quirktools.com/screenfly/#u='+url+'&w=360&h=640&a=38&s=1')
+        //- h6
+        //-   a(href='http://quirktools.com/screenfly/#u='+url+'&w=360&h=640&a=38&s=1') Samsung Galaxy S3/4
+      //- div.col-xs-6
+      //-   h6
+      //-     a(href='http://quirktools.com/screenfly/#u='+url+'&w=360&h=640&a=38&s=1') Apple iPhone 5
+      //-   iframe.preview(style='width:100%; height:900px', src='http://quirktools.com/screenfly/#u='+url+'&w=320&h=568&a=37&s=1')

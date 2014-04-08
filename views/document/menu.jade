@@ -1,0 +1,50 @@
+mixin menu(uri, label)
+  //- if uri.startsWith(locals.uri)
+  if uri == locals.uri
+    a.active(href=uri)
+      =label
+  else
+    a(href=uri)
+      =label
+
+hr
+h6 
+  +menu('/docs','살펴보기')
++menu('/docs/overview/how-to-use',         '이용방법')
++menu('/docs/overview/pricing-and-policy', '가격 정책 및 약관')
++menu('/docs/overview/use-case',           '이용사례')
++menu('/docs/overview/security',           '보안')
+
+hr
+h6 
+  +menu('/docs/account/overview','계정')
++menu('/docs/account/create','새로 만들기')
++menu('/docs/account/modify','정보 수정')
++menu('/docs/account/what-is-api','API 개념')
++menu('/docs/account/activities','보안을 위한 활동기록')
+
+hr
+h6 
+  +menu('/docs/apps/overview','앱 서비스')
++menu('/docs/apps/create','새로 만들기')
++menu('/docs/apps/supporting-agreements','지원하는 약관들')
++menu('/docs/apps/supporting-platforms','지원하는 플랫폼들')
+      
+hr
+h6
+  +menu('/docs/board/overview','게시판')
++menu('/docs/board/create','새로 만들기')
++menu('/docs/board/posting','게시글 쓰기')
++menu('/docs/board/scheduled-posting','게시글 예약하여 올리기')
++menu('/docs/board/localization','다국어 지원하기')
++menu('/docs/board/deploying-to-webpage','웹페이지에 적용하기')
++menu('/docs/board/deploying-to-mobile-app','모바일 앱에 적용하기')
+
+hr
+h6
+  +menu('/docs/message/overview','메시지')
++menu('/docs/message/where-to-apply','적용가능한 부분 판단하기')
++menu('/docs/message/create-for-popup','팝업 메시지로 만들기')
++menu('/docs/message/create-for-resource','이미지로 만들기')
++menu('/docs/message/localization','다국어 지원하기')
++menu('/docs/message/version-control','버전 관리하기')

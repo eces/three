@@ -41,26 +41,46 @@ block content
                     option(value=language)= language
 
           .form-group
-            label.col-sm-2.control-label(for='input25') 메시지 주소
+            label.col-sm-2.control-label(for='input25')
+              | 메시지 주소
+              br
+              a(href=url, target='_blank') 테스트
             .col-sm-10
               input#input25.well.col-xs-12(type='text', value=url)
-              p
-                strong 메시지의 데이터 타입을 쉽게 확인하기 위해 알맞은 확장자를 붙힐 수 있습니다.
-                br
-                | ex) json, txt, jpg, jpeg, png, gif, mov, url, plain, binary, image, csv, tsv
-                hr
-                strong 메시지 내용이 http로 시작하는 URL인 경우 바로 redirect됩니다.
-                br
-                | 이 방법을 통해 이미지, 동영상, 미디어 파일의 고유 링크를 제공할 수 있습니다.
+              //- p
+              //-   strong 메시지의 데이터 타입을 쉽게 확인하기 위해 알맞은 확장자를 붙힐 수 있습니다.
+              //-   br
+              //-   | ex) json, txt, jpg, jpeg, png, gif, mov, url, plain, binary, image, csv, tsv
+              //-   hr
+              //-   strong 메시지 내용이 http로 시작하는 URL인 경우 바로 redirect됩니다.
+              //-   br
+              //-   | 이 방법을 통해 이미지, 동영상, 미디어 파일의 고유 링크를 제공할 수 있습니다.
+              
+              br
+
           
           .form-group
             .col-sm-offset-2.col-sm-10
               button.btn.btn-embossed.mrm.btn-wide.btn-default.btn-primary(type='submit') 전송
               a.btn.btn-embossed.mrm.btn-wide.btn-default(href='/messages') 목록으로 돌아가기
+        hr
+        h6 도움말
+        a(href='/docs/message/create-for-popup') 팝업 메시지로 만들기
+        br
+        a(href='/docs/message/create-for-resource') 이미지로 만들기
+        br
+        a(href='/docs/message/localization') 다국어 지원하기
+        br
+        a(href='/docs/message/version-control') 버전 관리하기
+        br
+        br
+        br
 
       div.col-xs-6
         each language in languages
           hr
+          a.pull-right(href=url+'?lang='+language, target='_blank') 테스트
+          input.pull-right(type='file', name=language, data-toggle='submission')
           h6= language
           textarea.form-control(id=language)= message[language]
         br 

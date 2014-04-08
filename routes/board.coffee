@@ -1,4 +1,5 @@
 pool = require('../db.js').pool
+activity = require('../activity.js')
 
 __views__ = [
   {
@@ -205,6 +206,7 @@ exports.update = (req, res, next) ->
             timestamp: Date.now()
 
 exports.delete = (req, res, next) ->
+  # activity.create req, uid, "메시지 ##{mid} 삭제"
   res.send 501
 
 
@@ -235,7 +237,9 @@ exports.preview = (req, res, next) ->
         uid = r[0].uid
         bid = r[0].bid
         res.render 'board/preview.jade', 
-          url: "/v1/users/#{uid}/apps/#{aid}/boards/#{bid}"
+          postUrl: "/boards/#{bid}/posts"
+          itemUrl: "/boards/#{bid}"
+          url: "http://#{req.headers.host}/v1/users/#{uid}/apps/#{aid}/boards/#{bid}"
       else
         res.send 404
 

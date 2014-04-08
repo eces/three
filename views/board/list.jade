@@ -1,4 +1,5 @@
 extends ../layout
+include ../platform-mixin
 
 block content
   div.container
@@ -17,7 +18,8 @@ block content
               each board in boards
                 tr
                   td= board.id
-                  td= board.appPlatform
+                  td
+                    +platform(board.appPlatform)
                   td= board.appName
                   td= board.name
                   td #{moment(board.updatedAt).calendar()}
@@ -31,5 +33,8 @@ block content
       div.col-xs-3
         button.btn.btn-primary.btn-block(data-bind='click: createBoard') 새로운 게시판 추가하기
         br
-        p 앱을 추가하면 앱이 선택된 모든 게시판, 메시지등 다른 기능에 대한 설정과 권한을 한번에 관리할 수 있습니다.
-        p 앱 갯수 제한은 없습니다.
+        hr
+        h6 도움말
+        a(href='/docs/board/overview') 게시판에 대해 알아보기
+        br
+        a(href='/docs/board/create') 새로 만들기

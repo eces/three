@@ -3,12 +3,33 @@ extends layout
 block content
   div.container
     div.row
+      div.col-xs-4
+        a.btn.btn-hg.btn-block.btn-primary.btn-embossed(href='/session')
+          //- i.fa.fa-check(style='font-size: 42px; line-height: 60px;')
+          i.ion-ios7-checkmark(style='font-size: 42px; line-height: 60px;')
+          br
+          | 베타서비스 시작하기 
+      div.col-xs-4
+        a.btn.btn-hg.btn-block.btn-danger.btn-embossed(href='/apps')
+          //- i.fa.fa-heart(style='font-size: 42px; line-height: 60px;')
+          i.ion-ios7-heart(style='font-size: 42px; line-height: 60px;')
+          br
+          | 더 알아보기
+      div.col-xs-4
+        a.btn.btn-hg.btn-block.btn-info.btn-embossed(href='/docs')
+          //- i.ion-code-working(style='font-size: 42px; line-height: 60px;')
+          i.ion-ios7-chatbubble(style='font-size: 42px; line-height: 60px;')
+          br
+          | 개발자 문서
+    div.row
       div.col-xs-8
         hr
         h6 서비스 소개서
         br
         script.speakerdeck-embed(async='async', data-id='0c6a87b08f5a01317de21e8cfc450540', data-ratio='1.33333333333333', src='//speakerdeck.com/assets/embed.js')
       div.col-xs-4
+        //- button.btn.btn-hg.btn-block.btn-primary(data-bind='click: signBeta')
+        
         hr
         h6
           | 새로운 소식
@@ -16,12 +37,6 @@ block content
           //-   a(href='/support') 더보기
         br
         iframe(src='http://threesomeplace.com/v1/users/9/apps/5/boards/6', style='border: 0; width: 100%; height: 400px;')
-        hr
-        //- button.btn.btn-hg.btn-block.btn-primary(data-bind='click: signBeta')
-        a.btn.btn-hg.btn-block.btn-primary(href='/session')
-          | 베타서비스 시작하기 
-        a.btn.btn-hg.btn-block.btn-default(href='/apps')
-          | 더 알아보기
 
     br
     //- else

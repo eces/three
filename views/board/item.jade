@@ -2,9 +2,9 @@ extends ../layout
 
 block content
   div.container
-    div.palette.palette-alizarin
-      p 테마 누르면 오른쪽에 스크린샷
-      p json 제공 
+    if locals.dev
+      div.palette.palette-alizarin
+        p 테마 누르면 오른쪽에 스크린샷
     div.row
       div.col-xs-6
         hr
@@ -49,7 +49,7 @@ block content
                     option(value=language, selected)= language
                   else
                     option(value=language)= language
-              span.help-block 게시판 주소에 <code>lang=Korean</code> parameter를 넣으면 해당 언어의 글만 보입니다. 값이 없을 경우 기본언어로 적용됩니다.
+              span.help-block 접속자의 언어를 알 수 없는 경우 기본 언어의 게시물을 보여줍니다.
           
           .form-group
             .col-sm-offset-2.col-sm-10
@@ -58,6 +58,11 @@ block content
 
       div.col-xs-6
         hr
+        h6 도움말
+        a(href='/docs/board/deploying-to-webpage') 웹페이지에 적용하기
+        br
+        a(href='/docs/board/deploying-to-mobile-app') 모바일 앱에 적용하기
+        hr
         h6 게시판 페이지 주소
         br
         input.well.col-xs-12(type='text', value=url)
@@ -65,3 +70,13 @@ block content
         h6 게시판 API 주소
         br
         input.well.col-xs-12(type='text', value=url+'.json')
+        
+        br
+        br
+        br
+        
+
+        a.btn.btn-embossed.mrm.btn-wide.btn-default(href='/boards/' + board.id + '/preview')
+          i.ion-play
+          | 
+          | 모바일 보기

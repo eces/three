@@ -19,9 +19,11 @@ html(lang="en")
     link(href="/css/application.css", rel="stylesheet")
     link(href="/css/bootstrap-datetimepicker.min.css", rel="stylesheet")
     link(href="http://code.ionicframework.com/ionicons/1.4.1/css/ionicons.min.css", rel="stylesheet")
-
     link(rel="shortcut icon", href="/images/favicon.png")
     link(rel="apple-itouch-icon", href="/images/favicon@2x.png")
+    link(href="/css/summernote.css", rel="stylesheet")
+    link(href='//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css', rel='stylesheet')
+    link(href='http://code.ionicframework.com/ionicons/1.4.1/css/ionicons.min.css', rel='stylesheet')
     | <!--[if lt IE 9]>
     script(src="/js/html5shiv.js")
     script(src="/js/respond.min.js")
@@ -48,11 +50,11 @@ html(lang="en")
           //- +menu('/feedbacks', '피드백')
           //- +menu('/reports', '사용자 리포트')
         ul.nav.navbar-nav.navbar-right
+          +menu('/docs', '개발자 문서')
           +menu('/support', '고객센터')
           if locals.signed
             //- +menu('/pricing', '업그레이드')
             +menu('/users/'+locals.three.id, '계정 정보 (' + locals.three.email + ')')
-            +menu('/session/destroy', '로그아웃')
           else
             //- +menu('/pr', '서비스 소개서')
             +menu('/session', '로그인')
@@ -80,7 +82,7 @@ html(lang="en")
               h3.footer-title 
               h6 Need support to other language in your country?
               p We're going to support other languages and currencies as prioritized order. Let us know, it will prioritize your languages higher.
-              a.btn.btn-block.btn-primary(href='mailto:contact@olivebill.com?subject=THREESOMEPLACE%20-%20') Contact us
+              a.btn.btn-block.btn-info(href='mailto:contact@olivebill.com?subject=THREESOMEPLACE%20-%20') Contact us
             //-   .footer-banner
             //-     h3.footer-title Get Flat UI Pro
             //-     ul
@@ -106,6 +108,8 @@ html(lang="en")
     script(src="/js/knockout-3.1.0.js")
     script(src="/js/moment-with-langs.min.js")
     script(src="/js/bootstrap-datetimepicker.min.js")
+    script(src="/js/summernote.min.js")
+    script(src="/js/summernote-ko-KR.js")
     script(src="/js/application.js")
     script(type='text/javascript')
       | (function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===e.location.protocol?"https:":"http:")+'//cdn.mxpnl.com/libs/mixpanel-2.2.min.js';f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f);b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==

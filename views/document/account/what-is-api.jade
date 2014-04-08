@@ -3,11 +3,13 @@ extends ../layout
 block inner-content
   br
   include ../navigation
+  
   h6 API, Application Programming Interface
   p
     | 계정에 로그인하여 쓰리썸플레이스 웹사이트를 이용하는 것과 달리, 
     | 내부에서 설정한 게시판과 메시지등의 컨텐츠를 외부(앱, 서버, 브라우저)에서 이용하는 경우
     | 고유링크의 방문수와 API 요청수가 이용량이 집계됩니다.
+  br
   h6 API 사용량 확인하기
   p
     | 우측 상단의 
@@ -15,6 +17,6 @@ block inner-content
     | 에서 확인할 수 있습니다. 
     br
     br
-    img(src='http://lvh.me:3010/v1/users/1/apps/2/messages/what-is-ip-1', style='width: 50%;')
+    //- img(src='http://lvh.me:3010/v1/users/1/apps/2/messages/what-is-ip-1', style='width: 50%;')
   br
   include ../navigation

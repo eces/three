@@ -63,6 +63,7 @@ app.use (req, res, next) ->
   res.locals.moment = require 'moment'
   res.locals.moment.lang 'ko'
   res.locals.dev = if 'development' is app.get('env') then true else false
+  res.locals.title = '쓰리썸플레이스 - 지금 당장 필요한 모바일 웹 기술'
   next()
 
 if 'development' is app.get('env')
@@ -267,8 +268,13 @@ app.get '/docs', (req, res) ->
   res.render 'document/index.jade'
   # res.redirect 302, 'https://ghost.org/about'
 
+__titles__ =
+  '/docs': '개발자 문서'
+  '/docs/overview/how-to-use': '개발자 문서 > 살펴보기 > 가격 정책 및 약관 '
+  '/docs/overview/use-case': '개발자 문서 > 살펴보기 > 가격 정책 및 약관'
+  '/docs/overview/security': '개발자 문서 > 살펴보기 > 보안'
+
 app.get '/docs/:category/:title', (req, res) ->
-  console.log '>>>>>>>>>'
   title = req.param 'title'
   category = req.param 'category'
   if not /^[a-z]+$/i.test(category) or not /^[a-z0-9\-\_]+$/i.test(title)
@@ -276,6 +282,7 @@ app.get '/docs/:category/:title', (req, res) ->
     return
 
   res.locals.uri = '/docs/' + category + '/' + title
+  res.locals.title = if __titles__[res.locals.uri] isnt undefined then __titles__[res.locals.uri] else __titles__['/docs']
   res.render 'document/' + category + '/' + title + '.jade', (err, html) ->
     if err
       res.render 'document/404.jade'

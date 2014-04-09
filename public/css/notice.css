@@ -116,3 +116,7 @@ div.list.card .item-body .button-full {
 div.list.card .item-body .button-bar .button {
   font-size: 14px;
 }
+.item-body ul {
+  list-style: initial;
+  padding-left: 20px;
+}

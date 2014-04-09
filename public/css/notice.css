@@ -95,6 +95,9 @@ span.item-note {
   font-weight: 500;
   color: #8899aa;
 }
+div.list.card {
+  margin-bottom: 20px;
+}
 div.list.card .item-avatar {
   padding-left: 15px;
 }

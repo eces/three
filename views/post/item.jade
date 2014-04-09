@@ -2,9 +2,9 @@ extends ../layout
 
 block content
   div.container
-    //- h6 게시글 작성
-    div.palette.palette-alizarin
-      p 오른쪽 예제 클릭하면 data-code를 본문 커서 위치 추가시킴
+    if locals.dev
+      div.palette.palette-alizarin
+        p 오른쪽 예제 클릭하면 data-code를 본문 커서 위치 추가시킴
     div.row
       div.col-xs-7
         hr

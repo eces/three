@@ -44,7 +44,7 @@ block content
                   | #{moment(post.createdAt).calendar()}
                   br
                   //- if !moment(post.createdAt).isSame(moment(post.updatedAt), 'minute')
-                  if moment(post.createdAt).diff(moment(post.updatedAt), 'minute') > 2
+                  if moment(post.updatedAt).diff(moment(post.createdAt), 'minute') > 2
                     | (#{moment(post.updatedAt).calendar()})
                 td
                   | #{moment(post.publishAt).calendar()} 

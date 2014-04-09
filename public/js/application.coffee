@@ -14,10 +14,10 @@ jQuery ->
   __languages__ = 'ko en zh-CN zh-TW ja'.split(' ')
 
   moment.lang 'ko'
-  $('div.datetimepicker').datetimepicker {
-    format: 'yyyy-MM-dd hh:mm:ss'
-    language: 'ko-KR'
-  }
+  # $('.datetimepicker').datetimepicker {
+  #   format: 'yyyy-MM-dd HH:mm:ss'
+  #   language: 'ko-KR'
+  # }
 
   view = {}
   view.signin = (f) ->
@@ -186,10 +186,10 @@ jQuery ->
     lang = $f.find('#input22').val().trim()
     publishAt = $f.find('#input23').val()
 
-    mm = moment(publishAt).format('YYYY-MM-DD hh:mm:ss')
+    mm = moment(publishAt).format('YYYY-MM-DD HH:mm:ss')
     # console.log mm
     if mm is 'Invalid date'
-      alert '게시일의 날짜 형식이 잘못되었습니다.\n\n바른 형식: ' + moment().format('YYYY-MM-DD hh:mm:ss')
+      alert "게시일의 날짜가 잘못되었습니다.\n\n입력된 값: #{publishAt}\n바른 형식: #{moment().format('YYYY-MM-DD HH:mm:ss')}"
       return
     # publishAt = mm.toISOString()
     

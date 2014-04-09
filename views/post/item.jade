@@ -31,7 +31,7 @@ block content
             label.col-sm-2.control-label(for='input23') 게시 예약일
             .col-sm-10
               span.help-block 예약일이 이미 지났으면 글이 바로 보이게됩니다. 24시간 후로 기본 지정되어있습니다.
-              input#input23.form-control(type='datetime', placeholder='0000-00-00 00:00:00', value=moment(post.publishAt).format('YYYY-MM-DD hh:mm:ss'))
+              input#input23.form-control(type='datetime', placeholder='0000-00-00 00:00:00', value=moment(post.publishAt).format('YYYY-MM-DD HH:mm:ss'))
           .form-group
             label.col-sm-2.control-label(for='input22') 언어
             .col-sm-10

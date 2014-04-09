@@ -20,6 +20,17 @@ div.list.card {
   background-color: #555 !important;
   color: #fff;
 }
+.item-content p,
+.item-content span,
+.item-content small,
+.item-content h1,
+.item-content h2,
+.item-content h3,
+.item-content h4,
+.item-content h5,
+.item-content h6 {
+  color: #fff;
+}
 a {
   color: #8cb2d9;
 }

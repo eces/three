@@ -113,9 +113,10 @@ exports.update = (req, res, next) ->
     db.query """
     SELECT COUNT(*) as `c` FROM `apps`
     WHERE `identifier` = ?
+      AND `platform` = ?
       AND `userId` = ?
       AND `id` != ?
-    """, [app.identifier, +req.three.id, +id], (e, r) ->
+    """, [app.identifier, app.platform, +req.three.id, +id], (e, r) ->
       if e
         db.release()
         res.send 200,

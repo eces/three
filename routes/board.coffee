@@ -121,7 +121,7 @@ exports.find = (req, res, next) ->
       db.release()
       if r.length
         db.query """
-        SELECT `id`, `name`, `identifier` FROM `apps`
+        SELECT `id`, `name`, `identifier`, `platform` FROM `apps`
         WHERE `userId` = ?
         """, [+req.three.id], (e1, r1) ->
           db.release()

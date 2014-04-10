@@ -71,6 +71,9 @@ div.note-editor span.caret {
 #document .document-content ul {
   line-height: 18pt;
 }
+#document .document-content img {
+  width: 60%;
+}
 #document .document-menu {
   -webkit-box-shadow: inset -2px 0 10px 0px rgba(0, 0, 0, 0.05);
   box-shadow: inset -2px 0 10px 0px rgba(0, 0, 0, 0.05);

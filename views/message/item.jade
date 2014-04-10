@@ -17,9 +17,9 @@ block content
                 option(value=0) 없음
                 each app in apps
                   if message.appId == app.id
-                    option(value=app.id, selected) #{app.name} (#{app.identifier})
+                    option(value=app.id, selected) #{app.platform} - #{app.name} (#{app.identifier})
                   else
-                    option(value=app.id) #{app.name} (#{app.identifier})
+                    option(value=app.id) #{app.platform} - #{app.name} (#{app.identifier})
           .form-group
             label.col-sm-2.control-label(for='input21') 이름
             .col-sm-10

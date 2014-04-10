@@ -4,10 +4,33 @@ block inner-content
   br
   include ../navigation
   h6 이유
+  p 계정을 탈취하기 위해 여러가지 비밀번호로 로그인을 시도하거나, 본인이 아닌 타인이 계정을 이용하는경우, 최대한 빨리 문제를 발견할수 있도록 기록을 남기고 있습니다. 의심가는 기록이 있을 경우 바로 문의바랍니다. 증거자료를 제공하고 비밀번호를 변경해드립니다.
+  
+  br
   h6 기록되는 활동들
+  ul
+    li 로그인 성공
+    li 로그인 실패
+    li 메시지 삭제
+    li 게시판 삭제
+
+  br
+  h6 기록되는 항목들
+  ul
+    li Action
+    li IP Address
+    li OS
+    li Client (web browser)
+    li Event time
+    //- li Session
+
+  br
   h6 활동기록 확인하기
-  p
-    | 
-    //- img(src='http://lvh.me:3010/v1/users/1/apps/2/messages/what-is-ip-1', style='width: 50%;')
+  p 
+    | 오른쪽 위에 (프로필 페이지) 
+    strong 계정 정보 > 활동 기록 
+    | 에서 확인할 수 있습니다.
+  img(src='http://threesomeplace.com/v1/users/9/apps/5/messages/account-6')
+  br
   br
   include ../navigation

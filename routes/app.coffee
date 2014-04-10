@@ -15,6 +15,7 @@ exports.list = (req, res, next) ->
 
     db.query """
     SELECT * FROM `apps` WHERE `userId` = ?
+    ORDER BY `updatedAt` DESC, `identifier` ASC
     """, [user.id], (e0, r0) ->
       db.release()
       if e0

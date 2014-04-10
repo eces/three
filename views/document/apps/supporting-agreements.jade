@@ -3,15 +3,18 @@ extends ../layout
 block inner-content
   br
   include ../navigation
+  div.palette.palette-concrete
+    | 현재 이용 불가능합니다. 업데이트 예정
+  br
   h6 필요성
   p
-    | 검수중
+    | 앱을 만들면 빠짐없이 들어가는 약관들이 있습니다. 한번 만들어두면 편집할 일이 적지만, 편집을 해야하면 시간이 소요됩니다. 또한, 앱 심사등의 이유로 EULA 약관을 넣어야할 경우 HTML와 Plain text 형식을 변환해야하는 번거로움도 있습니다. 각 약관마다 개별 URL 페이지를 제공하므로 별도의 웹서버 작업 없이 스토어에 등록가능합니다.
   br
   h6 지원하는 약관들
   ul
     li 서비스이용약관
     li 최종사용자라이선스동의, End-user License Agreement
     li 개인정보보호약관, Privacy Policy
-    li 위치정보사업자약관, LBS Policy
+    li 위치정보사업자약관, LBS Statement
   br
   include ../navigation

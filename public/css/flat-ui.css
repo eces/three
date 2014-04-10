@@ -1525,7 +1525,7 @@ fieldset[disabled] .input-group-btn .btn-default.active {
   min-height: 53px;
   margin-bottom: 20px;
   border: none;
-  border-radius: 6px;
+  border-radius: 0;
 }
 @media (min-width: 768px) {
   .navbar-header {
@@ -1542,8 +1542,8 @@ fieldset[disabled] .input-group-btn .btn-default.active {
     margin-left: -21px;
   }
   .navbar-collapse .navbar-nav.navbar-left:first-child > li:first-child a {
-    border-bottom-left-radius: 6px;
-    border-top-left-radius: 6px;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
   }
   .navbar-collapse .navbar-nav.navbar-right:last-child {
     margin-right: -21px;
@@ -1552,7 +1552,7 @@ fieldset[disabled] .input-group-btn .btn-default.active {
     margin-right: -36px;
   }
   .navbar-collapse .navbar-nav.navbar-right:last-child > .dropdown:last-child > a {
-    border-radius: 0 6px 6px 0;
+    border-radius: 0 0 0 0;
   }
   .navbar-collapse .navbar-form.navbar-right:last-child {
     margin-right: -17px;
@@ -2285,7 +2285,7 @@ fieldset[disabled] .navbar-inverse .navbar-btn.active {
 }
 @media (min-width: 768px) {
   .navbar-embossed > .navbar-collapse {
-    border-radius: 6px;
+    border-radius: 0;
     -webkit-box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.15);
     box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.15);
   }

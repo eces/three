@@ -21,7 +21,7 @@ exports.list = (req, res, next) ->
     FROM `messages`, `apps`
     WHERE `messages`.`userId` = ?
       AND `messages`.`appId` = `apps`.`id`
-    ORDER BY `apps`.`id` DESC
+    ORDER BY `apps`.`appId`, `apps`.`identifier` ASC
     """, [+uid], (e0, r0) ->
     # AND `messages`.`appId` IN (`apps`.`id`, 0)
       db.release()

@@ -48,21 +48,4 @@ block content
         //- p 2. 메시지에 URL를 넣으면 바로 redirect됩니다. 앱에 있는 이미지나 미디어 리소스를 쉽게 바꾸세요.
         //- p 3. 모든 메시지는 다국어 지원이 가능합니다.
         //- p 4. 예약 변경, 롤백은 업데이트 예정입니다.
-      //-       tbody
-      //-         each message in messages
-      //-           tr
-      //-             td= message.id
-      //-             td= message.appPlatform
-      //-             td= message.appName
-      //-             td= message.name
-      //-             td #{moment(message.updatedAt).calendar()}
-      //-             td(width='140px')
-      //-               div.btn-group
-      //-                 a.btn.btn-embossed.btn-sm.btn-default(href='/messages/'+message.id) 수정
-      //-         td(colspan=6)
-      //-           p #{messages.length}개의 메시지
-
-      //- div.col-xs-3
-      //-   button.btn.btn-primary.btn-block(data-bind='click: createMessage') 새로운 메시지 추가하기
-      //-   br
   iframe#previewFrame(style='display: none')

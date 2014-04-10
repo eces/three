@@ -64,6 +64,7 @@ app.use (req, res, next) ->
   res.locals.moment.lang 'ko'
   res.locals.dev = if 'development' is app.get('env') then true else false
   res.locals.title = '쓰리썸플레이스 - 지금 당장 필요한 모바일 웹 기술'
+  res.locals.host = req.headers.host
   next()
 
 if 'development' is app.get('env')

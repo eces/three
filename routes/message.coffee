@@ -17,11 +17,11 @@ exports.list = (req, res, next) ->
       throw cErr
       return
     db.query """
-    SELECT `messages`.*, `apps`.`platform` as `appPlatform`, `apps`.`name` as `appName`
+    SELECT `messages`.*, `apps`.`platform` as `appPlatform`, `apps`.`name` as `appName`, `apps`.`id` as `appId`
     FROM `messages`, `apps`
     WHERE `messages`.`userId` = ?
       AND `messages`.`appId` = `apps`.`id`
-    ORDER BY `apps`.`appId`, `apps`.`identifier` ASC
+    ORDER BY `messages`.`appId`, `messages`.`identifier` ASC
     """, [+uid], (e0, r0) ->
     # AND `messages`.`appId` IN (`apps`.`id`, 0)
       db.release()

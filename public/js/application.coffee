@@ -435,6 +435,16 @@ jQuery ->
       $textarea.attr 'disabled', 'disabled'
   true
 
+  $previewMessages = $ '[data-toggle~=previewMessage]'
+  if $previewMessages.length
+    $previewMessages.bind 'mouseenter', (e) ->
+      $this = $(this)
+      $f = $ '#previewFrame'
+      $f.attr 'src', $this.data('url')
+      $f.show()
+    $previewMessages.bind 'mouseleave', (e) ->
+      $f = $ '#previewFrame'
+      $f.hide()
 # (function($) {
 
 #   // Add segments to a slider

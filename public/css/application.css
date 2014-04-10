@@ -87,3 +87,19 @@ div.note-editor span.caret {
 #document .document-menu h6 a:hover {
   color: #e67e22;
 }
+#previewFrame {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  width: 50%;
+  height: 100%;
+  border: 0;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+.cursor-zoom-in {
+  cursor: -webkit-zoom-in;
+  cursor: -moz-zoom-in;
+}
+.cursor-text {
+  cursor: text;
+}

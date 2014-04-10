@@ -21,7 +21,8 @@ block content
                 //- td
                 td.cursor-zoom-in(data-toggle='previewMessage', data-url='http://'+locals.host+'/v1/users/'+locals.three.id+'/apps/'+message.appId+'/messages/'+message.identifier)
                   span.cursor-text #{message.identifier} 
-                  i.ion-search(style='color: #ccc')
+                  a(href='http://'+locals.host+'/v1/users/'+locals.three.id+'/apps/'+message.appId+'/messages/'+message.identifier)
+                    i.ion-search(style='color: #ccc')
                 td
                   +platform(message.appPlatform)
                 td= message.appName
@@ -64,4 +65,4 @@ block content
       //- div.col-xs-3
       //-   button.btn.btn-primary.btn-block(data-bind='click: createMessage') 새로운 메시지 추가하기
       //-   br
-  iframe#previewFrame.hide
+  iframe#previewFrame(style='display: none')

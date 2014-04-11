@@ -72,6 +72,7 @@ jQuery ->
         promo: promo
       success: (d, s, x) ->
         if d.code is 200
+          ga 'send', 'event', 'account', 'create', 'account', 1
           location.href = '/users/' + d.id
         else
           alert d.message + ' ' + d.code
@@ -91,6 +92,7 @@ jQuery ->
         name: n
       success: (d, s, x) ->
         if d.code is 200
+          ga 'send', 'event', 'app', 'create', 'app', 1
           location.href = '/apps/' + d.id
         else
           alert d.message + ' ' + d.code
@@ -132,6 +134,7 @@ jQuery ->
         name: n
       success: (d, s, x) ->
         if d.code is 200
+          ga 'send', 'event', 'board', 'create', 'board', 1
           location.href = '/boards/' + d.id
         else
           alert d.message + ' ' + d.code
@@ -171,6 +174,7 @@ jQuery ->
         lang: lang
       success: (d, s, x) ->
         if d.code is 200
+          ga 'send', 'event', 'post', 'create', 'post', 1
           location.href = "/boards/#{boardId}/posts/#{d.id}"
         else
           alert d.message + ' ' + d.code
@@ -260,6 +264,7 @@ jQuery ->
         name: n
       success: (d, s, x) ->
         if d.code is 200
+          ga 'send', 'event', 'message', 'create', 'message', 1
           location.href = '/messages/' + d.id
         else
           alert d.message + ' ' + d.code
@@ -411,7 +416,7 @@ jQuery ->
       # aware of white spaces
       $elemLabels.filter(':even').html ' ' + $prev.text()
 
-    console.log $next
+    # console.log $next
     if $next.is('.end')
       $elemLinks.filter(':odd').html ''
     else
@@ -424,7 +429,7 @@ jQuery ->
       # aware of white spaces
       $elemLabels.filter(':odd').html $next.text() + ' '
 
-    console.log $prev, $next
+    # console.log $prev, $next
 
   $submissions = $ '[data-toggle~=submission]'
   if $submissions.length

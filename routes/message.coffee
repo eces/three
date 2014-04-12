@@ -238,7 +238,10 @@ exports.update = (req, res, next) ->
         return
 
 exports.sendfile = (req, res, next) ->
-  uid = +req.three.id
+  uid = +req.param 'userId'
+  if not isFinite(uid)
+    res.send 404
+    return
   aid = +req.param 'appId'
   filename = req.param('filename') + '.jpg'
   fs.exists "./uploads/#{uid}/#{aid}/#{filename}", (exists) ->
